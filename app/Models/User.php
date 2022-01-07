@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->hasMany(UserHistory::class);
     }
 
+    public function notes(): HasMany
+    {
+        return $this->hasMany(Note::class);
+    }
+
     public function role(): HasOne
     {
         return $this->hasOne(UserRole::class);
