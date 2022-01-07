@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\UserRole;
+use App\Models\UserDetail;
+use App\Models\UserHistory;
 use App\Actions\HasRoleAction;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -44,7 +49,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
+    public function details(): HasOne
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
+    public function histories(): HasMany
+    {
+        return $this->hasMany(UserHistory::class);
+    }
+
+    public function role(): HasOne
     {
         return $this->hasOne(UserRole::class);
     }
