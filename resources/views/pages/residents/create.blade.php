@@ -104,20 +104,18 @@
                                 
                                 <div class="col-md-6">
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-light active">
+                                        <label class="btn btn-light {{ old('gender') === 'Male' ? 'active' : '' }} ">
                                             <input 
                                                 type="radio" 
                                                 name="gender" 
                                                 id="male" 
-                                                {{ old('gender') === 'Male' ? 'checked' : '' }} 
                                                 value="Male"> Male
                                         </label>
-                                        <label class="btn btn-light">
+                                        <label class="btn btn-light {{ old('gender') === 'Female' ? 'active' : '' }} ">
                                             <input 
                                                 type="radio" 
                                                 name="gender" 
                                                 id="female"
-                                                {{ old('gender') === 'Female' ? 'checked' : '' }} 
                                                 value="Female"> Female
                                         </label>
                                         @error('gender')

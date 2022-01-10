@@ -105,21 +105,21 @@
                                 
                                 <div class="col-md-6">
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-light active">
+                                        <label class="btn btn-light {{ $resident->details->gender === 'Male' ? 'active' : '' }}">
                                             <input 
                                                 type="radio" 
                                                 name="gender" 
                                                 id="male" 
-                                                {{ $resident->details->gender === 'Male' ? 'checked' : '' }} 
-                                                value="Male"> Male
+                                                value="Male"
+                                            > Male
                                         </label>
-                                        <label class="btn btn-light">
+                                        <label class="btn btn-light {{ $resident->details->gender === 'Female' ? 'active' : '' }}">
                                             <input 
                                                 type="radio" 
                                                 name="gender" 
                                                 id="female"
-                                                {{ $resident->details->gender === 'Female' ? 'checked' : '' }} 
-                                                value="Female"> Female
+                                                value="Female"
+                                            > Female
                                         </label>
                                         @error('gender')
                                             <span class="invalid-feedback" role="alert">
@@ -129,7 +129,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row mb-3">
                                 <div class="col-md-8 mx-auto">
                                     <div class="input-group mb-3">
