@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserHistoriesTable extends Migration
+class CreateUserComplaintsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class CreateUserHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_histories', function (Blueprint $table) {
+        Schema::create('user_complaints', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->constrained();
             $table->string('type');
             $table->string('description');
             $table->boolean('is_solved')->default(false);
@@ -31,6 +31,6 @@ class CreateUserHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_histories');
+        Schema::dropIfExists('user_complaints');
     }
 }

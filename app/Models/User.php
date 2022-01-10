@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Schedule;
 use App\Models\UserRole;
 use App\Models\UserDetail;
-use App\Models\UserHistory;
+use App\Models\UserComplaint;
 use App\Actions\HasRoleAction;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -55,9 +55,9 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
-    public function histories(): HasMany
+    public function complaints(): HasMany
     {
-        return $this->hasMany(UserHistory::class);
+        return $this->hasMany(UserComplaint::class);
     }
 
     public function notes(): HasMany
