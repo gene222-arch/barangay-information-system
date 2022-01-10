@@ -18,8 +18,8 @@ class CreateUserComplaintsTable extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->string('type');
-            $table->string('description');
-            $table->boolean('is_solved')->default(false);
+            $table->string('description')->nullable();
+            $table->char('is_solved', 3);
             $table->timestamps();
         });
     }

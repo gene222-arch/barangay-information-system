@@ -57,13 +57,28 @@
                             <span class="badge badge-success">Clear</span>
                         </td>
                         <td>
-                            <form action="{{ route('residents.destroy', $resident->id) }}" method="POST">
-                                @csrf 
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger">
-                                    <i class="fas fa-user-minus"></i>
-                                </button>
-                            </form>
+                            <div class="row">
+                                <div class="col">
+                                    <form action="{{ route('residents.destroy', $resident->id) }}" method="POST">
+                                        @csrf 
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger" title="Remove resident">
+                                            <i class="fas fa-user-minus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    @if($resident->complaints()->exists())
+                                        <a href="{{ route('user-complaints.edit', $resident->complaints()->first()->id) }}?id={{ $resident->id }}" class="btn btn-warning" title="File a complaint">
+                                            <i class="fas fa-file-signature"></i>
+                                        </a>
+                                    @else 
+                                        <a href="{{ route('user-complaints.create') }}?id={{ $resident->id }}" class="btn btn-warning" title="File a complaint">
+                                            <i class="fas fa-file-signature"></i>
+                                        </a>
+                                    @endif 
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

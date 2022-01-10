@@ -3,6 +3,7 @@
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ResidentsController;
 use App\Http\Controllers\SchedulesController;
+use App\Http\Controllers\UserComplaintsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,5 @@ Route::group([
     Route::resource('notes', NotesController::class);
     Route::resource('residents', ResidentsController::class);
     Route::resource('schedules', SchedulesController::class);
+    Route::resource('user-complaints', UserComplaintsController::class);
 });
