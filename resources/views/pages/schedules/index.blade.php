@@ -30,6 +30,11 @@
                     editable: true,
                     events: `${ APP_URL }/schedules`,
                     displayEventTime: false,
+                    header: {
+                        left: 'prev,next,today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
                     editable: true,
                     eventRender: (event, element, view) => {
                         event.allDay = event.allDay === 'true';
@@ -42,8 +47,8 @@
 
                         if (title) 
                         {
-                            var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
-                            var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
+                            var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                            var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
                             
                             $.ajax({
                                 url: `${ APP_URL }/schedules`,
@@ -73,8 +78,8 @@
                     },
                     eventDrop: (event, delta) => // PUT request
                     {
-                        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
-                        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
+                        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
 
                         $.ajax({
                             url: `${ APP_URL }/schedules/${ event.id }`,

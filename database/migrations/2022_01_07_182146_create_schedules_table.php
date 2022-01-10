@@ -19,8 +19,8 @@ class CreateSchedulesTable extends Migration
             $table->foreignIdFor(User::class);
             $table->string('title');
             $table->text('description')->nullable();
-            $table->date('start')->nullable();
-            $table->date('end')->nullable();
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
         });
     }
 
