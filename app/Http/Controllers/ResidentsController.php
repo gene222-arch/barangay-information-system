@@ -18,7 +18,7 @@ class ResidentsController extends Controller
      */
     public function index()
     {
-        $residents = User::with('details')
+        $residents = User::with(['details', 'complaints'])
             ->where('id', '!=', 1)
             ->paginate(3);
         
