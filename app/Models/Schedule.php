@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class Schedule extends Model
 {
@@ -12,13 +13,22 @@ class Schedule extends Model
 
     protected $fillable = [
         'user_id',
-        'type',
+        'title',
         'description',
-        'started_at',
-        'ended_at'
+        'start',
+        'end'
     ];
 
     public $timestamps = false;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($schedule) {
+            $schedule->user_id = Auth::user()->id;
+        });
+    }
 
     public function user(): BelongsTo
     {

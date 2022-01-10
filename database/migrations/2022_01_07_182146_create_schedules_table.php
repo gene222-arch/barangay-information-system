@@ -17,10 +17,10 @@ class CreateSchedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->string('type');
+            $table->string('title');
             $table->text('description')->nullable();
-            $table->timestamp('started_at')->nullable();
-            $table->timestamp('ended_at')->nullable();
+            $table->date('start')->nullable();
+            $table->date('end')->nullable();
         });
     }
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ResidentsController;
+use App\Http\Controllers\SchedulesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,5 @@ Route::group([
 ], function () {
     Route::resource('notes', NotesController::class);
     Route::resource('residents', ResidentsController::class);
+    Route::resource('schedules', SchedulesController::class);
 });
