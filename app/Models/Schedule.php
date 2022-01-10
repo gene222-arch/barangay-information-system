@@ -14,7 +14,6 @@ class Schedule extends Model
     protected $fillable = [
         'user_id',
         'title',
-        'description',
         'start',
         'end'
     ];
