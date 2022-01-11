@@ -49,6 +49,7 @@ class ResidentsController extends Controller
 
         $action->store(
             $request->name,
+            $request->birthed_at,
             $request->email,
             $request->gender,
             $request->address,
@@ -105,6 +106,7 @@ class ResidentsController extends Controller
         $action->update(
             $resident,
             $request->name,
+            $request->birthed_at,
             $request->email,
             $request->gender,
             $request->address,

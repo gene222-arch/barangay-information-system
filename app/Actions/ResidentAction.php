@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class ResidentAction 
 {
-    public function store(string $name, string $email, string $gender, string $address, string $civilStatus, string $phoneNumber, string $avatarPath): bool|string
+    public function store(string $name, string $birthedAt, string $email, string $gender, string $address, string $civilStatus, string $phoneNumber, string $avatarPath): bool|string
     {
         try {
-            DB::transaction(function () use ($name, $email, $gender, $address, $civilStatus, $phoneNumber, $avatarPath)
+            DB::transaction(function () use ($name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber, $avatarPath)
             {
                 $resident = User::create([ 
                     'name' => $name, 
@@ -27,7 +27,8 @@ class ResidentAction
                         'phone_number' => $phoneNumber,
                         'gender' => $gender,
                         'address' => $address,
-                        'civil_status' => $civilStatus
+                        'civil_status' => $civilStatus,
+                        'birthed_at' => $birthedAt
                     ]);
             });
         } catch (\Throwable $th) {
@@ -37,15 +38,14 @@ class ResidentAction
         return true;
     }
 
-    public function update(User $user, string $name, string $email, string $gender, string $address, string $civilStatus, string $phoneNumber, string $avatarPath): bool|string
+    public function update(User $user, string $name, string $birthedAt, string $email, string $gender, string $address, string $civilStatus, string $phoneNumber, string $avatarPath): bool|string
     {
         try {
-            DB::transaction(function () use ($user, $name, $email, $gender, $address, $civilStatus, $phoneNumber, $avatarPath)
+            DB::transaction(function () use ($user, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber, $avatarPath)
             {
                 $user->update([ 
                     'name' => $name, 
-                    'email' => $email, 
-                    'password' => Hash::make(Str::random(8))
+                    'email' => $email
                 ]);
 
                 $user
@@ -55,7 +55,8 @@ class ResidentAction
                         'phone_number' => $phoneNumber,
                         'gender' => $gender,
                         'address' => $address,
-                        'civil_status' => $civilStatus
+                        'civil_status' => $civilStatus,
+                        'birthed_at' => $birthedAt
                     ]);
             });
         } catch (\Throwable $th) {

@@ -25,8 +25,9 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
+            'birthed_at' => ['required', 'date', 'date_format:Y-m-d'],
             'email' => ['required', 'email', 'unique:users'],
-            'gender' => ['required', 'string', 'in:Male,Female'],
+            'gender' => ['nullable', 'string', 'in:Male,Female'],
             'address' => ['required', 'string'],
             'civil_status' => ['required', 'string', 'in:Single,Married,Widowed,Separated,Divorced'],
             'phone_number' => ['required', 'string', 'unique:user_details'],
