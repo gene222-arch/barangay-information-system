@@ -29,4 +29,6 @@ Route::group([
     Route::resource('residents', ResidentsController::class);
     Route::resource('schedules', SchedulesController::class);
     Route::resource('user-complaints', UserComplaintsController::class);
+
+    Route::put('/user-complaints/{complaint}/clear', [UserComplaintsController::class, 'clear'])->name('user-complaints.clear');
 });

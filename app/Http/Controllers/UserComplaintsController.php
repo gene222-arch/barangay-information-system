@@ -52,7 +52,7 @@ class UserComplaintsController extends Controller
                 'successMessage' => 'Complaint to ' . $resident->name . ' filed successfully'
             ]);
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -97,6 +97,24 @@ class UserComplaintsController extends Controller
         return Redirect::route('residents.index')
             ->with([
                 'successMessage' => 'File complaint updated successfully'
+            ]);
+    }
+
+    /**
+     * Update the specified resource in storage is_solved field.
+     *
+     * @param  \App\Models\UserComplaint  $complaint
+     * @return \Illuminate\Http\Response
+     */
+    public function clear(UserComplaint $complaint)
+    {
+        $complaint->update([
+            'is_solved' => 'Yes'
+        ]);
+
+        return Redirect::route('residents.index')
+            ->with([
+                'successMessage' => 'File complaint cleared successfully'
             ]);
     }
 

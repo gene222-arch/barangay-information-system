@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->hasMany(UserComplaint::class);
     }
 
+    public function activeComplaint()
+    {
+        return $this->complaints()->firstWhere('is_solved', 'No');
+    }
+
     public function notes(): HasMany
     {
         return $this->hasMany(Note::class);

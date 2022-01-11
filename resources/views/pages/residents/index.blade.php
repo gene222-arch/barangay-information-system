@@ -80,6 +80,19 @@
                                         </a>
                                     @endif 
                                 </div>
+                                @if($resident->activeComplaint())
+                                    <div class="col">
+                                        <form action="{{ route('user-complaints.clear', $resident->activeComplaint()->id) }}" method="POST">
+                                            @csrf 
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-outline-danger" title="Clear complaint">
+                                                <i class="fas fa-eraser"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="col"></div>
+                                @endif 
                             </div>
                         </td>
                     </tr>
