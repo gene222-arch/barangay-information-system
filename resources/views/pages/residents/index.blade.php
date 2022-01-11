@@ -54,8 +54,12 @@
                             {{ $resident->details->address }}
                         </td>
                         <td>
-                            <span class="badge badge-{{ $resident->complaints->count() ? 'danger' : 'success' }}">
-                                {{ Str::lower($resident?->complaints?->first()?->type ?? 'clear') }}
+                            <span class="badge badge-{{ $resident->activeComplaint() ? 'danger' : 'success' }}">
+                                @if($resident->activeComplaint())
+                                    {{ Str::lower($resident->activeComplaint()->type) }}
+                                @else
+                                    clear
+                                @endif 
                             </span>
                         </td>
                         <td>
@@ -70,7 +74,7 @@
                                     </form>
                                 </div>
                                 <div class="col">
-                                    @if($resident->complaints()->exists())
+                                    @if($resident->activeComplaint())
                                         <a href="{{ route('user-complaints.edit', $resident->complaints->first()->id) }}?id={{ $resident->id }}" class="btn btn-warning" title="File a complaint">
                                             <i class="fas fa-file-signature"></i>
                                         </a>
