@@ -132,7 +132,7 @@ class ResidentsController extends Controller
 
         $user->details()?->delete();
         $user->role()?->delete();
-        $user->histories()?->delete();
+        $user->complaints()?->delete();
         $user->delete();
 
         return Redirect::route('residents.index')

@@ -4,7 +4,7 @@ namespace App\Actions;
 
 use App\Models\Schedule;
 use App\Models\User;
-use App\Models\UserHistory;
+use App\Models\UserComplaint;
 
 class DashboardAction 
 {
@@ -12,7 +12,7 @@ class DashboardAction
     {
         $residentsCount = User::whereHas('role', fn ($q) => $q->where('role_id', 2))->count();
         $schedulesCount = Schedule::count();
-        $blottersCount = UserHistory::where('type', 'blotter')->count();
+        $blottersCount = UserComplaint::where('type', 'blotter')->count();
 
         return [
             'residentsCount' => $residentsCount,
