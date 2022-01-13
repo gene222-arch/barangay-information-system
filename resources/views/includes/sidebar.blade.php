@@ -5,8 +5,11 @@
         <span class="sr-only">Toggle Menu</span>
     </button>
   </div>
-	<div class="p-4">
-		<div class="row mb-5 justify-content-center align-items-center">
+	<div class="p-3">
+		<div class="row mb-5 mt-3 justify-content-center align-items-center">
+			<div class="col-3">
+				<img class="img img-responsive" src="{{ asset("storage/app/logo.png") }}" width="40" height="40">
+			</div>
 			<div class="col">
 				<h6><strong>{{ Auth::user()->name }}</strong></h6>
 				<small>{{ Auth::user()->email }}</small>

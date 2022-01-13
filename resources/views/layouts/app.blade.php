@@ -29,7 +29,8 @@
         <nav class="navbar navbar-expand-xl navbar-dark shadow-sm app-layout-navbar">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <strong>Barangay IS</strong>
+                    <img class="img img-responsive" src="{{ asset("storage/app/logo.png") }}" width="40" height="40">
+                    <strong>Barangay Lingga IS</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
