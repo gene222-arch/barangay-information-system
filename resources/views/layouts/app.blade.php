@@ -28,7 +28,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-xl navbar-dark shadow-sm app-layout-navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home-page') }}">
                     <img class="img img-responsive" src="{{ asset("storage/app/logo.png") }}" width="40" height="40">
                     <strong>Barangay Lingga IS</strong>
                 </a>
