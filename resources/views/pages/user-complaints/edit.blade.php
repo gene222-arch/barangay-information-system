@@ -109,14 +109,15 @@
                                 
                                 <div class="col-md-6">
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-light {{ $userComplaint->is_solved === "Yes" ? 'active' : '' }}">
+                                        <label class="btn btn-light {{ $userComplaint->is_solved == "Yes" ? 'active' : '' }}">
                                             <input 
                                                 type="radio" 
                                                 name="is_solved" 
                                                 id="yes" 
-                                                value="Yes"> Yes
+                                                value="Yes"
+                                            > Yes
                                         </label>
-                                        <label class="btn btn-light {{ $userComplaint->is_solved === "No" ? 'active' : '' }}">
+                                        <label class="btn btn-light {{ $userComplaint->is_solved == "No" ? 'active' : '' }}">
                                             <input 
                                                 type="radio" 
                                                 name="is_solved" 

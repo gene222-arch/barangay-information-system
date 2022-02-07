@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ResidentsController;
 use App\Http\Controllers\SchedulesController;
@@ -26,7 +27,9 @@ Auth::routes();
 
 Route::group([
     'middleware' => 'auth'
-], function () {
+], function () 
+{
+    Route::get('/', [HomeController::class, 'index']);
     Route::resource('notes', NotesController::class);
     Route::resource('residents', ResidentsController::class);
     Route::resource('schedules', SchedulesController::class);

@@ -38,7 +38,7 @@ class ResidentAction
         return true;
     }
 
-    public function update(User $user, string $name, string $birthedAt, string $email, string $gender, string $address, string $civilStatus, string $phoneNumber, string $avatarPath): bool|string
+    public function update(User $user, string $name, string $birthedAt, string $email, ?string $gender, string $address, string $civilStatus, string $phoneNumber, string $avatarPath): bool|string
     {
         try {
             DB::transaction(function () use ($user, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber, $avatarPath)
@@ -53,7 +53,7 @@ class ResidentAction
                     ->update([
                         'avatar_path' => $avatarPath,
                         'phone_number' => $phoneNumber,
-                        'gender' => $gender,
+                        'gender' => $gender ?? $user->details->gender,
                         'address' => $address,
                         'civil_status' => $civilStatus,
                         'birthed_at' => $birthedAt

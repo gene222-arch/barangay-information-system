@@ -104,34 +104,6 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="is_solved" class="col-md-4 col-form-label text-md-end">{{ __('Is Solved') }}</label>
-                                
-                                <div class="col-md-6">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-light {{ old('is_solved') === "Yes" ? 'active' : '' }}">
-                                            <input 
-                                                type="radio" 
-                                                name="is_solved" 
-                                                id="yes" 
-                                                value="Yes"> Yes
-                                        </label>
-                                        <label class="btn btn-light active {{ old('is_solved') === "No" ? 'active' : '' }}">
-                                            <input 
-                                                type="radio" 
-                                                name="is_solved" 
-                                                id="no"
-                                                value="No"> No
-                                        </label>
-                                        @error('is_solved')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="row mb-0 justify-content-end">
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary">

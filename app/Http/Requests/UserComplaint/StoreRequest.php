@@ -25,8 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'type' => ['required', 'string'],
-            'description' => ['nullable', 'string'],
-            'is_solved' => ['required', 'in:Yes,No']
+            'description' => ['nullable', 'string']
         ];
     }
 }

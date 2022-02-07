@@ -45,7 +45,11 @@ class UserComplaintsController extends Controller
     {
         $resident = User::findOrFail($request->input('id'));
 
-        $resident->complaints()->create($request->validated());
+        $resident->complaints()->create(
+            $request->validated() + [
+                'is_solved' => 'No'
+            ]
+        );
 
         return Redirect::route('residents.index')
             ->with([
@@ -90,9 +94,9 @@ class UserComplaintsController extends Controller
      * @param  \App\Models\UserComplaint  $complaint
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, UserComplaint $complaint)
+    public function update(UpdateRequest $request, UserComplaint $userComplaint)
     {
-        $complaint->update($request->validated());
+        $userComplaint->update($request->validated());
 
         return Redirect::route('residents.index')
             ->with([
