@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Note\Request as NoteRequest;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\Note\Request as NoteRequest;
 
 class NotesController extends Controller
 {
@@ -15,7 +16,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        $notes = Note::with('user')->get();
+        $notes = Note::with('user')->paginate(5);
 
         return view('pages.notes.index')
             ->with([
@@ -30,7 +31,7 @@ class NotesController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.notes.create');
     }
 
     /**
@@ -41,7 +42,12 @@ class NotesController extends Controller
      */
     public function store(NoteRequest $request)
     {
-        $note = Note::create($request->validated());
+        Note::create($request->validated());
+
+        return Redirect::route('notes.index')
+            ->with([
+                'successMessage' => 'Note created successfully'
+            ]);
     }
 
     /**
@@ -58,12 +64,14 @@ class NotesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Note $note)
     {
-        //
+        return view('pages.notes.edit', [
+            'note' => $note
+        ]);
     }
 
     /**
@@ -73,9 +81,14 @@ class NotesController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Note $note)
+    public function update(NoteRequest $request, Note $note)
     {
         $note = $note->update($request->validated());
+
+        return Redirect::route('notes.index')
+            ->with([
+                'successMessage' => 'Note updated successfully'
+            ]);
     }
 
     /**
@@ -87,5 +100,10 @@ class NotesController extends Controller
     public function destroy(Note $note)
     {
         $note->delete();
+
+        return Redirect::route('notes.index')
+            ->with([
+                'successMessage' => 'Note deleted successfully'
+            ]);
     }
 }

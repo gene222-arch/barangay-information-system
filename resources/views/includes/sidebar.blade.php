@@ -30,6 +30,11 @@
 				</li>
 			@endhasrole
 			@hasrole('Administrator')
+				<li class="{{ request()->is('notes') || request()->is('notes/*') ? 'active' : '' }}">
+					<a href="/notes"><i class="fa-solid fa-note-sticky mr-3 {{ request()->is('notes') || request()->is('notes/*') ? 'text-info' : '' }}"></i> Notes</a>
+				</li>
+			@endhasrole
+			@hasrole('Administrator')
 				<li class="{{ request()->is('schedules') || request()->is('schedules/*') ? 'active' : '' }}">
 					<a href="/schedules"><i class="fas fa-calendar mr-3 {{ request()->is('schedules') || request()->is('schedules/*') ? 'text-info' : '' }}"></i> Schedules</a>
 				</li>
