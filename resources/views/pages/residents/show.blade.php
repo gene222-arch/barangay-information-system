@@ -17,9 +17,11 @@
                         <div class="col-10">
                             <strong>{{ $resident->name }}</strong>
                         </div>
-                        <div class="col">
-                            <span class="badge badge-danger">Blotter</span>
-                        </div>
+                        @if ($resident->activeComplaint())
+                            <div class="col">
+                                <span class="badge badge-danger">{{ $resident->activeComplaint()->type }}</span>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 
@@ -63,7 +65,7 @@
             <div class="card">
                 <div class="card-body">
                     <p>
-                        <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="btn btn-danger btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             Complaint history
                         </button>
                     </p>
@@ -89,6 +91,9 @@
                             </table>
                         </div>
                     </div>
+                    <p>
+                        <a target="_blank" href="{{ route('export.barangay-clearance', $resident->id) }}" class="btn btn-secondary btn-block">Generate Barangay Clearance</a>
+                    </p>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ResidentsController;
@@ -41,4 +42,12 @@ Route::group([
     Route::put('/user-complaints/{complaint}/clear', [UserComplaintsController::class, 'clear'])->name('user-complaints.clear');
 
     Route::get('/city-directory', fn () => view('pages.city-directory'));
+
+    Route::prefix('exports')->group(function ()
+    {
+        Route::name('export.')->group(function ()
+        {
+            Route::get('/barangay-clearance/{resident}', [ExportsController::class, 'barangayClearance'])->name('barangay-clearance');
+        });
+    });
 });
