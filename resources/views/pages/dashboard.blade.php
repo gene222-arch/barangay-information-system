@@ -3,10 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-5">
             <div class="card text-center">
-                <div class="card-header">
-                  Featured
+                <div class="card-header bg-dark">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Enter barcode here</h5>
@@ -33,9 +32,6 @@
                         <p class="card-text">Please do enter a valid barcode</p>
                         <button type="submit" class="btn btn-primary">Scan</button>
                     </form>
-                </div>
-                <div class="card-footer text-muted">
-                  2 days ago
                 </div>
             </div>
         </div>
