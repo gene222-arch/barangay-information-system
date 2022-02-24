@@ -32,6 +32,9 @@ Route::group([
     Route::get('/', [HomeController::class, 'index']);
     Route::resource('notes', NotesController::class);
     Route::resource('residents', ResidentsController::class);
+    
+    Route::post('/residents', [ResidentsController::class, 'showViaBarcode'])->name('residents.barcode');
+
     Route::resource('schedules', SchedulesController::class);
     Route::resource('user-complaints', UserComplaintsController::class);
 

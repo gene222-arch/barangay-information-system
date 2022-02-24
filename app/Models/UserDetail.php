@@ -12,6 +12,7 @@ class UserDetail extends Model
 
     protected $fillable = [
         'user_id',
+        'barcode',
         'avatar_path',
         'phone_number',
         'gender',
@@ -20,6 +21,16 @@ class UserDetail extends Model
         'birthed_at'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($userDetail) 
+        {
+            $userDetail->barcode = time();
+        });
+    }
+    
     public function getBirthedAtAttribute($value): string
     {
         return Carbon::parse($value)->format('Y-m-d');

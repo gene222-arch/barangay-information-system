@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Actions\ResidentAction;
 use App\Http\Requests\Resident\StoreRequest;
 use App\Http\Requests\Resident\UpdateRequest;
+use App\Http\Requests\ResidentShowViaBarcodeRequest;
 use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -74,6 +76,21 @@ class ResidentsController extends Controller
     {
         return view('pages.residents.show', [
             'resident' => $resident
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Http\Requests\ResidentShowViaBarcodeRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function showViaBarcode(ResidentShowViaBarcodeRequest $request)
+    {
+        $userDetails = UserDetail::firstWhere('barcode', $request->barcode);
+
+        return view('pages.residents.show', [
+            'resident' => User::find($userDetails->user_id)
         ]);
     }
 

@@ -10,14 +10,29 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Enter barcode here</h5>
-                  <div class="input-group input-group-sm mb-3 px-5">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa-solid fa-barcode"></i></span>
+                    <form method="POST" action="{{ route('residents.barcode') }}">
+                        @csrf
+                        <div class="input-group input-group-sm mb-3 px-5">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa-solid fa-barcode"></i></span>
+                            </div>
+                            <input 
+                                name="barcode" 
+                                type="password" 
+                                class="form-control @error('barcode') is-invalid @enderror bg-light" 
+                                aria-label="Small" 
+                                aria-describedby="inputGroup-sizing-sm"
+                                autofocus
+                            >
+                            @error('barcode')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
-                    <input type="text" class="form-control bg-light" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <p class="card-text">Please do enter a valid barcode</p>
-                  <a href="#" class="btn btn-primary">Scan</a>
+                        <p class="card-text">Please do enter a valid barcode</p>
+                        <button type="submit" class="btn btn-primary">Scan</button>
+                    </form>
                 </div>
                 <div class="card-footer text-muted">
                   2 days ago
