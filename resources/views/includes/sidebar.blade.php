@@ -20,11 +20,6 @@
 				<a href="/"><span class="fa fa-home mr-3 {{ request()->is('/') ? 'text-info' : '' }}"></span> Dashboard</a>
 			</li>
 			@hasrole('Administrator')
-				<li class="{{ request()->is('scanner') || request()->is('scanner/*') ? 'active' : '' }}">
-					<a href="/scanner"><i class="fas fa-qrcode text-light mr-3 {{ request()->is('scanner') || request()->is('scanner/*') ? 'text-info' : '' }}"></i> Barcode Scanner</a>
-				</li>
-			@endhasrole
-			@hasrole('Administrator')
 				<li class="{{ request()->is('residents') || request()->is('residents/*') ? 'active' : '' }}">
 					<a href="/residents"><i class="fas fa-user mr-3 {{ request()->is('residents') || request()->is('residents/*') ? 'text-info' : '' }}"></i> Residents</a>
 				</li>
@@ -37,6 +32,11 @@
 			@hasrole('Administrator')
 				<li class="{{ request()->is('schedules') || request()->is('schedules/*') ? 'active' : '' }}">
 					<a href="/schedules"><i class="fas fa-calendar mr-3 {{ request()->is('schedules') || request()->is('schedules/*') ? 'text-info' : '' }}"></i> Schedules</a>
+				</li>
+			@endhasrole
+			@hasrole('Administrator')
+				<li class="{{ request()->is('city-directory') || request()->is('city-directory') ? 'active' : '' }}">
+					<a href="/city-directory"><i class="fa-solid fa-city mr-3 {{ request()->is('city-directory') || request()->is('city-directory/*') ? 'text-info' : '' }}"></i> City Directory</a>
 				</li>
 			@endhasrole
 			<li>

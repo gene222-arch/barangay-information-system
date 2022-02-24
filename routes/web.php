@@ -33,10 +33,12 @@ Route::group([
     Route::resource('notes', NotesController::class);
     Route::resource('residents', ResidentsController::class);
     
-    Route::post('/residents', [ResidentsController::class, 'showViaBarcode'])->name('residents.barcode');
+    Route::post('/residents/view-by-barcode', [ResidentsController::class, 'showViaBarcode'])->name('residents.barcode');
 
     Route::resource('schedules', SchedulesController::class);
     Route::resource('user-complaints', UserComplaintsController::class);
 
     Route::put('/user-complaints/{complaint}/clear', [UserComplaintsController::class, 'clear'])->name('user-complaints.clear');
+
+    Route::get('/city-directory', fn () => view('pages.city-directory'));
 });
