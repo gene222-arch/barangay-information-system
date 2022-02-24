@@ -3,6 +3,27 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="card text-center">
+                <div class="card-header">
+                  Featured
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Enter barcode here</h5>
+                  <div class="input-group input-group-sm mb-3 px-5">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa-solid fa-barcode"></i></span>
+                        </div>
+                    <input type="text" class="form-control bg-light" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <p class="card-text">Please do enter a valid barcode</p>
+                  <a href="#" class="btn btn-primary">Scan</a>
+                </div>
+                <div class="card-footer text-muted">
+                  2 days ago
+                </div>
+            </div>
+        </div>
         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
             <div class="card border-success mb-3">
                 <div class="row align-items-center">

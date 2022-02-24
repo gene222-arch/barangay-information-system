@@ -67,12 +67,14 @@ class ResidentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $resident
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $resident)
     {
-        //
+        return view('pages.residents.show', [
+            'resident' => $resident
+        ]);
     }
 
     /**
