@@ -65,13 +65,33 @@
                         <td>
                             <div class="row">
                                 <div class="col">
-                                    <form action="{{ route('residents.destroy', $resident->id) }}" method="POST">
-                                        @csrf 
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger" title="Remove resident">
-                                            <i class="fas fa-user-minus"></i>
-                                        </button>
-                                    </form>
+                                    <button title="Delete note" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $resident->id }}">
+                                        <i class="fa-solid fa-user-slash"></i>
+                                    </button>
+                                    
+                                    <div class="modal fade" id="exampleModal{{ $resident->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ $resident->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete resident</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Once deleted data cannot be retrieved
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <form action="{{ route('residents.destroy', $resident->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-warning">Continue</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col">
                                     @if($resident->activeComplaint())
