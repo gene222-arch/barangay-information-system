@@ -24,4 +24,13 @@ class ExportsController extends Controller
 
         return $pdf->stream('certificate-of-indigency.pdf');
     }
+
+    public function certificateOfRegistration(User $resident)
+    {
+        $pdf = PDF::loadView('exports.certificate-of-registration', [
+            'resident' => $resident
+        ]);
+
+        return $pdf->stream('certificate-of-registration.pdf');
+    }
 }

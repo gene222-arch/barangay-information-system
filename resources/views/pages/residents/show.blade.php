@@ -113,6 +113,17 @@
                             </button>
                         </form>
                     </p>
+                    <p>
+                        <form action="{{ route('export.cert.of.registration', $resident->id) }}">
+                            <button 
+                                type="submit"
+                                class="btn btn-light text-dark btn-block"
+                                {{ $resident->activeComplaint() ? 'disabled' : '' }}
+                            >
+                                Generate Certificate of Registration
+                            </button>
+                        </form>
+                    </p>
                 </div>
             </div>
         </div>
