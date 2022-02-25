@@ -15,4 +15,13 @@ class ExportsController extends Controller
 
         return $pdf->stream('barangay-clearance.pdf');
     }
+
+    public function certificateOfIndigency(User $resident)
+    {
+        $pdf = PDF::loadView('exports.certificate-of-indigency', [
+            'resident' => $resident
+        ]);
+
+        return $pdf->stream('certificate-of-indigency.pdf');
+    }
 }

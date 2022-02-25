@@ -48,6 +48,7 @@ Route::group([
         Route::name('export.')->group(function ()
         {
             Route::get('/barangay-clearance/{resident}', [ExportsController::class, 'barangayClearance'])->name('barangay-clearance');
+            Route::get('/certificate-of-indigency/{resident}', [ExportsController::class, 'certificateOfIndigency'])->name('cert.of.indegency');
         });
     });
 });

@@ -92,7 +92,26 @@
                         </div>
                     </div>
                     <p>
-                        <a target="_blank" href="{{ route('export.barangay-clearance', $resident->id) }}" class="btn btn-secondary btn-block">Generate Barangay Clearance</a>
+                        <form action="{{ route('export.barangay-clearance', $resident->id) }}">
+                            <button 
+                                type="submit"
+                                class="btn btn-light text-dark btn-block"
+                                {{ $resident->activeComplaint() ? 'disabled' : '' }}
+                            >
+                                Generate Barangay Clearance
+                            </button>
+                        </form>
+                    </p>
+                    <p>
+                        <form action="{{ route('export.cert.of.indegency', $resident->id) }}">
+                            <button 
+                                type="submit"
+                                class="btn btn-light text-dark btn-block"
+                                {{ $resident->activeComplaint() ? 'disabled' : '' }}
+                            >
+                                Generate Certificate of Indigency
+                            </button>
+                        </form>
                     </p>
                 </div>
             </div>
