@@ -33,4 +33,13 @@ class ExportsController extends Controller
 
         return $pdf->stream('certificate-of-registration.pdf');
     }
+
+    public function id(User $resident)
+    {
+        $pdf = PDF::loadView('exports.id', [
+            'resident' => $resident
+        ]);
+
+        return $pdf->stream('id.pdf');
+    }
 }
