@@ -65,6 +65,9 @@
                         <td>
                             <div class="row">
                                 <div class="col">
+                                    <a href="{{ route('residents.show', $resident->id) }}" class="btn btn-info">View</a>
+                                </div>
+                                <div class="col">
                                     <button title="Delete note" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $resident->id }}">
                                         <i class="fa-solid fa-user-slash"></i>
                                     </button>

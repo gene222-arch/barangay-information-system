@@ -2,7 +2,7 @@
 	<!-- Left navbar links -->
 	<ul class="navbar-nav">
 		<li class="nav-item d-none d-sm-inline-block">
-			<a target="_self" class="nav-link">Home</a>
+			<a href="/" class="nav-link">Dashboard</a>
 		</li>
 	</ul>
 </nav>

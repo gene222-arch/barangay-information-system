@@ -3,6 +3,9 @@
 
 @section('content')
     <div class="row justify-content-center">
+        <div class="col-12 text-right mb-2">
+            <a href="{{ route('residents.edit', $resident->id) }}" class="btn btn-warning">Edit</a>
+        </div>
         <div class="col-12 col-sm-12 col-md-8 col-lg-6">
             <div class="card">
                 <img 
