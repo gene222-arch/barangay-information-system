@@ -20,6 +20,7 @@ class CreateReservationsTable extends Migration
             $table->dateTime('start');
             $table->dateTime('end');
             $table->text('description')->nullable();
+            $table->string('status')->default('Processing');
             $table->timestamps();
         });
     }
