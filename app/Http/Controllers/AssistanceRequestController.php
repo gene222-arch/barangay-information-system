@@ -48,7 +48,7 @@ class AssistanceRequestController extends Controller
     {
         AssistanceRequest::create($request->validated());
 
-        return redirect()->route('requests.index')->with([
+        return redirect()->route('assistance-requests.index')->with([
             'successMessage' => 'Reserved successfully',
         ]);
     }
@@ -59,12 +59,12 @@ class AssistanceRequestController extends Controller
      * @param  \App\Models\AssistanceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(AssistanceRequest $request)
+    public function edit(AssistanceRequest $assistanceRequest)
     {
-        abort_if($request->status !== 'Processing', 403);
+        abort_if($assistanceRequest->status !== 'Processing', 403);
 
         return view('pages.request.edit', [
-            'request' => AssistanceRequest::with('user')->find($request->id),
+            'assistanceRequest' => AssistanceRequest::with('user')->find($assistanceRequest->id),
             'residents' => User::role('Resident')->get(),
         ]);
     }
@@ -80,7 +80,7 @@ class AssistanceRequestController extends Controller
     {
         $assistanceRequest->update($request->validated());
 
-        return redirect()->route('requests.index')->with([
+        return redirect()->route('assistance-requests.index')->with([
             'successMessage' => 'Request updated successfully',
         ]);
     }
@@ -88,14 +88,14 @@ class AssistanceRequestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AssistanceRequest  $request
+     * @param  \App\Models\AssistanceRequest  $assistanceRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AssistanceRequest $request)
+    public function destroy(AssistanceRequest $assistanceRequest)
     {
-        $request->delete();
+        $assistanceRequest->delete();
 
-        return redirect()->route('requests.index')->with([
+        return redirect()->route('assistance-requests.index')->with([
             'successMessage' => 'Request deleted successfully',
         ]);
     }

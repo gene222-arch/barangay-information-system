@@ -6,7 +6,7 @@
             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('reservations.store') }}">
+                        <form method="POST" action="{{ route('assistance-requests.store') }}">
                             @csrf
 
                             @hasrole('Administrator|Supervisor')
@@ -49,61 +49,54 @@
                             @endhasrole
 
                             <div class="row mb-3">
-                                <label for="start" class="col-md-4 col-form-label text-md-end">{{ __('Start time') }}</label>
-                            
-                                <div class="col-md-6">
-                                    <input 
-                                        id="start" 
-                                        type="time"     
-                                        class="form-control @error('start') is-invalid @enderror bg-light" name="start" 
-                                        value="{{ old('start') }}"  
-                                        autocomplete="start" 
-                                        required
-                                    >
-                            
-                                    @error('start')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <div class="col-md-8 mx-auto">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text bg-light" for="inputGroupSelect01">Type</label>
+                                        </div>
+                                        <select 
+                                            class="custom-select @error('type') is-invalid @enderror" 
+                                            id="inputGroupSelect01" 
+                                            name="type"
+                                        >
+                                            <option selected>Choose...</option>
+                                            @forelse ([
+                                                'Barangay Clearance',
+                                                'Barangay ID',
+                                            ] as $type)
+                                                <option 
+                                                    value="{{ $type }}" {{ old('type') === $type ? 'selected' : '' }}
+                                                >
+                                                    {{ $type  }}
+                                                </option>
+                                            @empty
+                                                <div class="alert alert-warning" role="alert">
+                                                    No assistance request type yet....
+                                                </div>
+                                            @endforelse
+                                        </select>
+                                        @error('type')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="end" class="col-md-4 col-form-label text-md-end">{{ __('End time') }}</label>
-                            
-                                <div class="col-md-6">
-                                    <input 
-                                        id="end" 
-                                        type="time" 
-                                        class="form-control @error('end') is-invalid @enderror bg-light" 
-                                        name="end" 
-                                        value="{{ old('end') }}"  
-                                        autocomplete="end" 
-                                        required
-                                    >
-                            
-                                    @error('end')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
+                                <label for="reason" class="col-md-4 col-form-label text-md-end">{{ __('Reason') }}</label>
 
                                 <div class="col-md-6">
                                     <textarea 
-                                        id="description"
-                                        class="form-control @error('description') is-invalid @enderror bg-light" 
-                                        name="description"
-                                        autocomplete="description"
+                                        id="reason"
+                                        class="form-control @error('reason') is-invalid @enderror bg-light" 
+                                        name="reason"
+                                        autocomplete="reason"
                                         required
                                         rows="3"
-                                    >{{ old('description') }}</textarea>
-                                    @error('description')
+                                    >{{ old('reason') }}</textarea>
+                                    @error('reason')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -116,7 +109,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Save') }}
                                     </button>
-                                    <a href="{{ route('reservations.index') }}" class="btn btn-outline-primary">
+                                    <a href="{{ route('assistance-requests.index') }}" class="btn btn-outline-primary">
                                         {{ __('Cancel') }}
                                     </a>
                                 </div>

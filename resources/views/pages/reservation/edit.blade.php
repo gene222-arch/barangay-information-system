@@ -151,7 +151,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Save') }}
                                     </button>
-                                    <a href="{{ route('residents.index') }}" class="btn btn-outline-primary">
+                                    <a href="{{ route('reservations.index') }}" class="btn btn-outline-primary">
                                         {{ __('Cancel') }}
                                     </a>
                                 </div>
