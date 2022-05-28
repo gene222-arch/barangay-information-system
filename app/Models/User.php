@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Models\Schedule;
-use App\Models\UserRole;
+use Spatie\Permission\Traits\HasRoles;
 use App\Models\UserDetail;
 use App\Models\UserComplaint;
-use App\Actions\HasRoleAction;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,7 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use HasRoleAction;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -73,10 +72,5 @@ class User extends Authenticatable
     public function schedules(): HasMany
     {
         return $this->hasMany(Schedule::class);
-    }
-
-    public function role(): HasOne
-    {
-        return $this->hasOne(UserRole::class);
     }
 }

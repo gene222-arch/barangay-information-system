@@ -16,12 +16,13 @@ class CreateUserDetailsTable extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->string('avatar_path')->nullable();
+            $table->foreignIdFor(User::class)->constrained();
+            $table->string('barcode')->unique();
             $table->string('phone_number')->unique();
             $table->char('gender', 6);
             $table->string('address');
             $table->char('civil_status', 10);
+            $table->timestamp('birthed_at')->nullable();
             $table->timestamps();
         });
     }
