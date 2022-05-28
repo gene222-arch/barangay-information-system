@@ -17,8 +17,8 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('type')->default('Covered Court');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->time('start');
+            $table->time('end');
             $table->text('description')->nullable();
             $table->string('status')->default('Processing');
             $table->timestamps();

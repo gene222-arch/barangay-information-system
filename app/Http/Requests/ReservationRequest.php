@@ -25,9 +25,17 @@ class ReservationRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'start' => ['required', 'date'],
-            'end' => ['required', 'date'],
+            'start' => ['required', 'string'],
+            'end' => ['required', 'string'],
             'description' => ['nullable', 'string'],
+            'status' => ['nullable', 'string', 'in:Processing,Granted,Denied']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'user_id.exists' => 'Please select a resident'
         ];
     }
 }

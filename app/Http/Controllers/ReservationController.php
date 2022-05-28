@@ -15,8 +15,14 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return view('reservation.index', [
-            'reservations' => Reservation::with('user')->latest()->get(),
+        $reservationQuery = Reservation::with('user')
+            ->when(auth()->user()->hasRole('Resident'), function ($q) {
+                return $q->where('user_id', auth()->id());
+            })
+            ->latest()->paginate(5);
+
+        return view('pages.reservation.index', [
+            'reservations' => $reservationQuery,
         ]);
     }
 
@@ -27,7 +33,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('reservation.create', [
+        return view('pages.reservation.create', [
             'residents' => User::role('Resident')->get(),
         ]);
     }
@@ -55,8 +61,10 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        return view('reservation.edit', [
-            'resident' => Reservation::with('user')->find($reservation->id),
+        abort_if($reservation->status !== 'Processing', 403);
+
+        return view('pages.reservation.edit', [
+            'reservation' => Reservation::with('user')->find($reservation->id),
             'residents' => User::role('Resident')->get(),
         ]);
     }
