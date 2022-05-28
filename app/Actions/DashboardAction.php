@@ -10,9 +10,8 @@ class DashboardAction
 {
     public function generalAnalytics(): array
     {
-        $residentsCount = User::with([
-            'role' => fn ($q) => $q->where('name', 'Resident')
-        ])->count();
+        $residentsCount = User::role('Resident')->count();
+
         $schedulesCount = Schedule::count();
         $blottersCount = UserComplaint::where([
             [

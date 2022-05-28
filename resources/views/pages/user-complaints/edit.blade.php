@@ -10,14 +10,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col">
-                                <img 
-                                    id="img"
-                                    class="img img-responsive mb-5 rounded" 
-                                    src="{{ asset("storage/avatars/" . $resident->details->avatar_path) }}"
-                                    style="width: 30%;"
-                                >
-                            </div>
                             <div class="col text-left">
                                 <div class="mt-5 row column">
                                     <div class="col-12">

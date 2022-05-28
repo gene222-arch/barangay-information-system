@@ -92,32 +92,40 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
+                                <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
                                 
                                 <div class="col-md-6">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-light {{ $resident->details->gender === 'Male' ? 'active' : '' }}">
-                                            <input 
-                                                type="radio" 
-                                                name="gender" 
-                                                id="male" 
-                                                value="Male"
-                                            > Male
+                                    <div class="form-check">
+                                        <input 
+                                            class="form-check-input @error('gender') is-invalid @enderror" 
+                                            type="radio" 
+                                            name="gender" 
+                                            id="flexRadioDefault1" 
+                                            value="Male"
+                                            {{  $resident->gender === 'Male' ? 'checked' : '' }}
+                                        >
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          Male
                                         </label>
-                                        <label class="btn btn-light {{ $resident->details->gender === 'Female' ? 'active' : '' }}">
-                                            <input 
-                                                type="radio" 
-                                                name="gender" 
-                                                id="female"
-                                                value="Female"
-                                            > Female
+                                      </div>
+                                      <div class="form-check">
+                                        <input 
+                                            class="form-check-input @error('gender') is-invalid @enderror" 
+                                            type="radio" 
+                                            name="gender" 
+                                            value="Female"
+                                            id="flexRadioDefault2"
+                                            {{ $resident->gender === 'Female' ? 'checked' : '' }}
+                                        >
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                          Female
                                         </label>
                                         @error('gender')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                      </div>
                                 </div>
                             </div>
                             <div class="row mb-3">

@@ -37,6 +37,8 @@ class ResidentAction
                         'civil_status' => $civilStatus,
                         'birthed_at' => $birthedAt
                     ]);
+
+                $resident->assignRole('Resident');
             });
         } catch (\Throwable $th) {
             return $th->getMessage();
