@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Request;
+use App\Models\AssistanceRequest;
 use App\Models\Schedule;
 use App\Models\UserDetail;
 use App\Models\Reservation;
@@ -81,8 +81,8 @@ class User extends Authenticatable
         return $this->hasMany(Reservation::class);
     }
 
-    public function requests(): HasMany 
+    public function assistanceRequests(): HasMany 
     {
-        return $this->hasMany(Request::class);
+        return $this->hasMany(AssistanceRequest::class);
     }
 }

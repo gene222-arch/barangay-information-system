@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssistanceRequestController;
 use App\Http\Controllers\ExportsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotesController;
@@ -33,6 +34,7 @@ Route::group([
 {
     Route::get('/', [HomeController::class, 'index']);
 
+    Route::resource('assistance-requests', AssistanceRequestController::class);
     Route::resource('reservations', ReservationController::class);
 
     Route::middleware('role:Administrator|Supervisor')->group(function () 
