@@ -25,7 +25,6 @@
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Avatar</th>
                     <th scope="col">Name</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Address</th>
@@ -36,16 +35,6 @@
             <tbody>
                 @foreach ($residents as $resident)
                     <tr>
-                        <td>
-                            <a href="{{ route('residents.edit', $resident->id) }}">
-                                <img 
-                                    src="{{ asset("storage/avatars/" . $resident->details->avatar_path) }}"
-                                    width="100"
-                                    height="100"
-                                    class="img-responsive rounded"
-                                >
-                        </a>
-                        </td>
                         <td><strong>{{ $resident->name }}</strong></td>
                         <td>
                             {{ $resident->details->phone_number }}

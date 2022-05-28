@@ -10,35 +10,6 @@
                             @csrf
                             @method('PUT')
 
-                            <div class="row mb-3 justify-content-center">
-                                <div class="col-12 col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                    <img 
-                                        id="img"
-                                        class="img img-responsive mb-3 w-100 rounded" 
-                                        src="{{ asset("storage/avatars/" . $resident->details->avatar_path) }}"
-                                        style="width: 30%;"
-                                    >
-                                </div>
-                                <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="custom-file">
-                                        <input 
-                                            type="file" 
-                                            name="avatar" 
-                                            class="form-control @error('avatar') is-invalid @enderror w-100" 
-                                            id="chooseFile"
-                                            oninput="img.src=window.URL.createObjectURL(this.files[0])"
-                                            value="{{ old('avatar') }}"
-                                        >
-                                        <label class="custom-file-label" for="chooseFile">Select Avatar</label>
-                                        @error('avatar')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="my-5">
                                 <p class="lead">Resident Information</p>
                                 <div class="dropdown-divider"></div>

@@ -8,7 +8,6 @@ use App\Http\Requests\Resident\UpdateRequest;
 use App\Http\Requests\ResidentShowViaBarcodeRequest;
 use App\Models\User;
 use App\Models\UserDetail;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class ResidentsController extends Controller
@@ -20,7 +19,8 @@ class ResidentsController extends Controller
      */
     public function index()
     {
-        $residents = User::with(['details', 'complaints'])
+        $residents = User::role('Resident')
+            ->with(['details', 'complaints'])
             ->where('id', '!=', 1)
             ->paginate(3);
         
@@ -47,8 +47,6 @@ class ResidentsController extends Controller
      */
     public function store(StoreRequest $request, ResidentAction $action)
     {
-        $avatarPath = $action->uploadAvatar($request);
-
         $action->store(
             $request->name,
             $request->birthed_at,
@@ -57,7 +55,6 @@ class ResidentsController extends Controller
             $request->address,
             $request->civil_status,
             $request->phone_number,
-            $avatarPath
         );
 
         return Redirect::route('residents.index')
@@ -113,15 +110,11 @@ class ResidentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\Resident\UpdateRequest  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $resident
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, $id, ResidentAction $action)
+    public function update(UpdateRequest $request, User $resident, ResidentAction $action)
     {
-        $resident = User::find($id);
-
-        $avatarPath = $action->uploadAvatar($request, $resident->details->avatar_path);
-
         $action->update(
             $resident,
             $request->name,
@@ -131,7 +124,6 @@ class ResidentsController extends Controller
             $request->address,
             $request->civil_status,
             $request->phone_number,
-            $avatarPath
         );
 
         return Redirect::route('residents.index')
@@ -143,18 +135,17 @@ class ResidentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $resident)
     {
-        $user = User::find($id);
-        $name = $user->name;
+        $name = $resident->name;
 
-        $user->details()?->delete();
-        $user->role()?->delete();
-        $user->complaints()?->delete();
-        $user->delete();
+        $resident->details()->delete();
+        $resident->removeRole('Resident');
+        $resident->complaints()?->delete();
+        $resident->delete();
 
         return Redirect::route('residents.index')
             ->with([

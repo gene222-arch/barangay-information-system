@@ -31,7 +31,6 @@ class StoreRequest extends FormRequest
             'address' => ['required', 'string'],
             'civil_status' => ['required', 'string', 'in:Single,Married,Widowed,Separated,Divorced'],
             'phone_number' => ['required', 'string', 'unique:user_details'],
-            'avatar' => ['required', 'image', 'mimes:png,jpg,jpeg']
         ];
     }
 }
