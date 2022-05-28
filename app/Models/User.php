@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\Schedule;
-use Spatie\Permission\Traits\HasRoles;
 use App\Models\UserDetail;
+use App\Models\Reservation;
 use App\Models\UserComplaint;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -72,5 +73,10 @@ class User extends Authenticatable
     public function schedules(): HasMany
     {
         return $this->hasMany(Schedule::class);
+    }
+
+    public function reservations(): HasMany 
+    {
+        return $this->hasMany(Reservation::class);
     }
 }

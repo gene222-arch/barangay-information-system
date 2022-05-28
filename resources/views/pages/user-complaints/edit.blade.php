@@ -81,13 +81,13 @@
 
                                 <div class="col-md-6">
                                     <textarea 
-                                        class="form-control 
-                                        @error('description') is-invalid @enderror bg-light" 
+                                        class="form-control @error('description') is-invalid @enderror bg-light" 
                                         id="description" 
                                         name="description" 
-                                        rows="3" 
+                                        rows="5"
                                         autocomplete="description" 
                                         autofocus>{{ $userComplaint->description }}</textarea>
+
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -107,6 +107,7 @@
                                                 name="is_solved" 
                                                 id="yes" 
                                                 value="Yes"
+                                                {{ $userComplaint->is_solved ? 'checked' : '' }}
                                             > Yes
                                         </label>
                                         <label class="btn btn-light {{ $userComplaint->is_solved == "No" ? 'active' : '' }}">
@@ -114,7 +115,9 @@
                                                 type="radio" 
                                                 name="is_solved" 
                                                 id="no"
-                                                value="No"> No
+                                                value="No"
+                                                {{ !$userComplaint->is_solved ? 'checked' : '' }}
+                                            > No
                                         </label>
                                         @error('is_solved')
                                             <span class="invalid-feedback" role="alert">
