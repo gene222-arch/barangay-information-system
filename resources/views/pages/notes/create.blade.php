@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+    <h2 class="jumbotron display-6">Add Notes</h2>
     <form action="{{ route('notes.store') }}" method="POST">
         @csrf
         <div class="row justify-content-center">
