@@ -28,6 +28,7 @@
                     @hasrole('Administrator|Supervisor')
                         <th scope="col">Resident</th>
                     @endhasrole
+                    <th scope="col">Date</th>
                     <th scope="col">Time In</th>
                     <th scope="col">Time out</th>
                     <th scope="col">Description</th>
@@ -43,6 +44,9 @@
                                 <strong>{{ $reservation->user->name }}</strong>
                             </td>
                         @endhasrole
+                        <td>
+                            {{ \Carbon\Carbon::parse($reservation->date)->format('M d, Y') }}
+                        </td>
                         <td>
                             {{ $reservation->start }}
                         </td>

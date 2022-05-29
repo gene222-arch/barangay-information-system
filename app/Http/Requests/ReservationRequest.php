@@ -25,8 +25,9 @@ class ReservationRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'start' => ['required', 'string'],
-            'end' => ['required', 'string'],
+            'date' => ['required', 'date', 'after_or_equal:now'],
+            'start' => ['required', 'after_or_equal:now'],
+            'end' => ['required', 'after:start'],
             'description' => ['nullable', 'string'],
             'status' => ['nullable', 'string', 'in:Processing,Granted,Denied']
         ];

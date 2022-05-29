@@ -24,7 +24,7 @@
                                                 <option selected>Choose...</option>
                                                 @forelse ($residents as $resident)
                                                     <option 
-                                                        value="{{ $resident->id }}" {{ old('user_id') === $resident->id ? 'selected' : '' }}
+                                                        value="{{ $resident->id }}" {{ old('user_id') == $resident->id ? 'selected' : '' }}
                                                     >
                                                         {{ $resident->name  }}
                                                     </option>
@@ -47,6 +47,27 @@
                             @hasrole('Resident')
                                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                             @endhasrole
+
+                            <div class="row mb-3">
+                                <label for="date" class="col-md-4 col-form-label text-md-end">{{ __('Date') }}</label>
+                            
+                                <div class="col-md-6">
+                                    <input 
+                                        id="date" 
+                                        type="date"     
+                                        class="form-control @error('date') is-invalid @enderror bg-light" name="date" 
+                                        value="{{ old('date') }}"  
+                                        autocomplete="date" 
+                                        required
+                                    >
+                            
+                                    @error('date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <div class="row mb-3">
                                 <label for="start" class="col-md-4 col-form-label text-md-end">{{ __('Start time') }}</label>
