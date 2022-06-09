@@ -16,7 +16,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        $notes = Note::with('user')->paginate(5);
+        $notes = Note::with('user')->get();
 
         return view('pages.notes.index')
             ->with([

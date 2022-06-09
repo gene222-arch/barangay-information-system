@@ -12,17 +12,15 @@
 
                             @hasrole('Administrator|Supervisor')
                                 <div class="row mb-3">
+                                    <h6>Reservation for?</h6>
                                     <div class="col-md-8 mx-auto">
                                         <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <label class="input-group-text bg-light" for="inputGroupSelect01">Residents</label>
-                                            </div>
                                             <select 
-                                                class="custom-select @error('user_id') is-invalid @enderror" 
+                                                class="custom-select @error('user_id') is-invalid @enderror select" 
                                                 id="inputGroupSelect01" 
                                                 name="user_id"
                                             >
-                                                <option selected>Choose...</option>
+                                                <option selected>Select your resident...</option>
                                                 @forelse ($residents as $resident)
                                                     <option 
                                                         value="{{ $resident->id }}" {{ old('user_id') == $resident->id ? 'selected' : '' }}

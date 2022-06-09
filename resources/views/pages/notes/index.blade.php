@@ -21,14 +21,14 @@
             <i class="fa-solid fa-plus fa-2x"></i>
         </a>
     </div>
-    <table class="table">
+    <table class="table" id="notesTable">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Title</th>
                 <th scope="col">Subject</th>
                 <th scope="col">Body</th>
                 <th scope="col">Created at</th>
-                <th scope="col" colspan="2">Actions</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -44,8 +44,6 @@
                     <td>{{ \Carbon\Carbon::parse($note->created_at)->diffForHumans() }}</td>
                     <td>
                         <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning">Edit</a>
-                    </td>
-                    <td>
                         <button title="Delete note" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $note->id }}">
                             Delete
                         </button>
@@ -78,5 +76,4 @@
             @endforeach
         </tbody>
     </table>
-    {{ $notes->links() }}
 @endsection

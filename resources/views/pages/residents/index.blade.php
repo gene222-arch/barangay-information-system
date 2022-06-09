@@ -137,6 +137,5 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $residents->links() }}
     </div>
 @endsection

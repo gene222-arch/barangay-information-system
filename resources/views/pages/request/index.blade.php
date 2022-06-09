@@ -113,6 +113,5 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $requests->links() }}
     </div>
 @endsection

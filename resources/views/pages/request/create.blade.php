@@ -14,15 +14,12 @@
                                 <div class="row mb-3">
                                     <div class="col-md-8 mx-auto">
                                         <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <label class="input-group-text bg-light" for="inputGroupSelect01">Residents</label>
-                                            </div>
                                             <select 
                                                 class="custom-select @error('user_id') is-invalid @enderror" 
                                                 id="inputGroupSelect01" 
                                                 name="user_id"
                                             >
-                                                <option selected>Choose...</option>
+                                                <option selected>Select resident...</option>
                                                 @forelse ($residents as $resident)
                                                     <option 
                                                         value="{{ $resident->id }}" {{ old('user_id') === $resident->id ? 'selected' : '' }}
@@ -52,15 +49,12 @@
                             <div class="row mb-3">
                                 <div class="col-md-8 mx-auto">
                                     <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text bg-light" for="inputGroupSelect01">Type</label>
-                                        </div>
                                         <select 
                                             class="custom-select @error('type') is-invalid @enderror" 
                                             id="inputGroupSelect01" 
                                             name="type"
                                         >
-                                            <option selected>Choose...</option>
+                                            <option selected>Select type of request...</option>
                                             @forelse ([
                                                 'Barangay Clearance',
                                                 'Barangay ID',
@@ -86,16 +80,16 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="reason" class="col-md-4 col-form-label text-md-end">{{ __('Reason') }}</label>
+                                <label for="reason" class="col-md-3 col-form-label text-md-end">{{ __('Reason') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <textarea 
                                         id="reason"
                                         class="form-control @error('reason') is-invalid @enderror bg-light" 
                                         name="reason"
                                         autocomplete="reason"
                                         required
-                                        rows="3"
+                                        rows="5"
                                     >{{ old('reason') }}</textarea>
                                     @error('reason')
                                         <span class="invalid-feedback" role="alert">

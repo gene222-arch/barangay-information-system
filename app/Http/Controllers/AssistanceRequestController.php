@@ -19,7 +19,7 @@ class AssistanceRequestController extends Controller
             ->when(auth()->user()->hasRole('Resident'), function ($q) {
                 return $q->where('user_id', auth()->id());
             })
-            ->latest()->paginate(5);
+            ->latest()->get();
 
         return view('pages.request.index', [
             'requests' => $requestQuery,

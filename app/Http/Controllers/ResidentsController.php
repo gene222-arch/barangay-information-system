@@ -22,7 +22,7 @@ class ResidentsController extends Controller
         $residents = User::role('Resident')
             ->with(['details', 'complaints'])
             ->where('id', '!=', 1)
-            ->paginate(3);
+            ->get();
         
         return view('pages.residents.index', [
             'residents' => $residents
