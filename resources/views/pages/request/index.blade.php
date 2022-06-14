@@ -9,6 +9,9 @@
             </button>
         </div>
     @endif
+    <h3 class="mb-5">
+        <strong>Requests</strong>
+    </h3>
     <div class="table-responsive">
         <div class="text-right">
             <a 
@@ -61,51 +64,47 @@
                             </span>
                         </td>
                         <td>
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <button 
-                                        title="Delete" 
-                                        type="button" 
-                                        class="btn btn-danger" 
-                                        data-toggle="modal" 
-                                        data-target="#exampleModal{{ $request->id }}"
-                                    >
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                    
-                                    <div class="modal fade" id="exampleModal{{ $request->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ $request->id }}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete request</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Once deleted data cannot be retrieved
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <form action="{{ route('assistance-requests.destroy', $request->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-warning">Continue</button>
-                                                    </form>
-                                                </div>
+                            <div class="action">
+                                <a 
+                                    href="{{ route('assistance-requests.edit', $request->id) }}"
+                                    title="Edit" 
+                                    type="button" 
+                                    class="btn btn-warning"
+                                >
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                                <button 
+                                    title="Delete" 
+                                    type="button" 
+                                    class="btn btn-danger" 
+                                    data-toggle="modal" 
+                                    data-target="#exampleModal{{ $request->id }}"
+                                >
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                                
+                                <div class="modal fade" id="exampleModal{{ $request->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ $request->id }}" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete request</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Once deleted data cannot be retrieved
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <form action="{{ route('assistance-requests.destroy', $request->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-warning">Continue</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <a 
-                                        href="{{ route('assistance-requests.edit', $request->id) }}"
-                                        title="Edit" 
-                                        type="button" 
-                                        class="btn btn-warning"
-                                    >
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </a>
                                 </div>
                             </div>
                         </td>

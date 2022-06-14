@@ -9,16 +9,19 @@
             </button>
         </div>
     @endif
+    <h3 class="mb-5">
+        <strong>Notes</strong>
+    </h3>
     <div class="text-right">
         <a 
             href="{{ route('notes.create') }}"
-            class="btn btn-outline-success mb-2"
+            class="btn btn-success mb-2"
             data-toggle="tooltip" 
             data-placement="left" 
             title="Add new note"
             data-html="true"
         >
-            <i class="fa-solid fa-plus fa-2x"></i>
+            <i class="fa-solid fa-plus"></i>
         </a>
     </div>
     <table class="table" id="notesTable">
@@ -43,9 +46,11 @@
                     <td>{{ $note->body }}</td>
                     <td>{{ \Carbon\Carbon::parse($note->created_at)->diffForHumans() }}</td>
                     <td>
-                        <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
                         <button title="Delete note" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $note->id }}">
-                            Delete
+                            <i class="fa-solid fa-trash"></i>
                         </button>
                         
                         <div class="modal fade" id="exampleModal{{ $note->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ $note->id }}" aria-hidden="true">

@@ -2,7 +2,9 @@
 	<!-- Left navbar links -->
 	<ul class="navbar-nav">
 		<li class="nav-item d-none d-sm-inline-block">
-			<a href="/" class="nav-link">Dashboard</a>
+			<a href="/" class="nav-link">
+				Hi! <strong>{{ Auth::user()->name }}</strong>
+			</a>
 		</li>
 	</ul>
 </nav>
