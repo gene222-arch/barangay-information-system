@@ -40,6 +40,7 @@ Route::group([
     Route::middleware('role:Administrator|Supervisor')->group(function () 
     {
         Route::resource('notes', NotesController::class);
+        Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])->name('residents.none');
         Route::resource('residents', ResidentsController::class);
         
         Route::post('/residents/view-by-barcode', [ResidentsController::class, 'showViaBarcode'])->name('residents.barcode');

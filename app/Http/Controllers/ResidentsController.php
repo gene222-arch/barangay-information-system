@@ -29,6 +29,18 @@ class ResidentsController extends Controller
         ]);
     }
 
+    public function nonResidents()
+    {
+        $residents = User::role('Non Resident')
+            ->with(['details', 'complaints'])
+            ->where('id', '!=', 1)
+            ->get();
+        
+        return view('pages.residents.index', [
+            'residents' => $residents
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
