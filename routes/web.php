@@ -8,6 +8,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ResidentsController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\UserComplaintsController;
+use App\Models\Document;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,14 @@ Route::group([
 
     Route::middleware('role:Administrator|Supervisor')->group(function () 
     {
+        Route::get(
+            '/documents', 
+            fn () => view('pages.documents.index', [  
+                'documents' => Document::with('user')->get(),
+            ])
+        )
+            ->name('documents.index');
+
         Route::resource('notes', NotesController::class);
         Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])->name('residents.none');
         Route::resource('residents', ResidentsController::class);
