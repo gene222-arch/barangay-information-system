@@ -37,11 +37,9 @@
 		<li class="{{ request()->is('assistance-requests') || request()->is('assistance-requests/*') ? 'active' : '' }}">
 			<a href="/assistance-requests"><i class="fas fa-handshake-angle mr-3 {{ request()->is('assistance-requests') || request()->is('assistance-requests/*') ? 'text-info' : '' }}"></i>Assistance Requests</a>
 		</li>
-		@hasrole('Administrator|Supervisor')
-			<li class="{{ request()->is('city-directory') || request()->is('city-directory') ? 'active' : '' }}">
-				<a href="/city-directory"><i class="fa-solid fa-city mr-3 {{ request()->is('city-directory') || request()->is('city-directory/*') ? 'text-info' : '' }}"></i> City Directory</a>
-			</li>
-		@endhasrole
+		<li class="{{ request()->is('city-directory') || request()->is('city-directory') ? 'active' : '' }}">
+			<a href="/city-directory"><i class="fa-solid fa-city mr-3 {{ request()->is('city-directory') || request()->is('city-directory/*') ? 'text-info' : '' }}"></i> City Directory</a>
+		</li>
 		<li>
 			<a href="#" class="nav-link" onclick="document.getElementById('logout__form').submit()">
 				<p><i class="fas fa-sign-out-alt mr-3 text-light"></i>Logout</p>

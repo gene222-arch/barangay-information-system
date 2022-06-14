@@ -52,7 +52,7 @@
                             {{ $resident->details->address }}
                         </td>
                         <td>
-                            <span class="badge badge-{{ $resident->activeComplaint() ? 'danger' : 'success' }}">
+                            <span class="badge badge-pill badge-{{ $resident->activeComplaint() ? 'danger' : 'success' }}">
                                 @if($resident->activeComplaint())
                                     {{ Str::lower($resident->activeComplaint()->type) }}
                                 @else

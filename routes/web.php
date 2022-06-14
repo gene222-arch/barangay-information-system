@@ -34,9 +34,9 @@ Route::group([
 ], function () 
 {
     Route::get('/', [HomeController::class, 'index']);
-
     Route::resource('assistance-requests', AssistanceRequestController::class);
     Route::resource('reservations', ReservationController::class);
+    Route::get('/city-directory', fn () => view('pages.city-directory'));
 
     Route::middleware('role:Administrator|Supervisor')->group(function () 
     {
@@ -49,17 +49,15 @@ Route::group([
             ->name('documents.index');
 
         Route::resource('notes', NotesController::class);
-        Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])->name('residents.none');
+        Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])
+            ->name('residents.none');
         Route::resource('residents', ResidentsController::class);
-        
-        Route::post('/residents/view-by-barcode', [ResidentsController::class, 'showViaBarcode'])->name('residents.barcode');
+        Route::post('/residents/view-by-barcode', [ResidentsController::class, 'showViaBarcode'])
+            ->name('residents.barcode');
     
         Route::resource('schedules', SchedulesController::class);
         Route::resource('user-complaints', UserComplaintsController::class);
-    
         Route::put('/user-complaints/{complaint}/clear', [UserComplaintsController::class, 'clear'])->name('user-complaints.clear');
-    
-        Route::get('/city-directory', fn () => view('pages.city-directory'));
     
         Route::prefix('exports')->group(function ()
         {
