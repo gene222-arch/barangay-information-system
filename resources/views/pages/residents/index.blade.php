@@ -69,6 +69,13 @@
                                 >
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
+                                <a 
+                                    href="{{ route('residents.edit', $resident->id) }}" 
+                                    class="btn btn-warning" 
+                                    title="Edit"
+                                >
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
                                 <button 
                                     title="Delete" 
                                     type="button" 
@@ -105,7 +112,7 @@
                                 @if($resident->activeComplaint())
                                     <a 
                                         href="{{ route('user-complaints.edit', $resident->complaints->first()->id) }}?id={{ $resident->id }}" 
-                                        class="btn btn-warning" 
+                                        class="btn btn-dark" 
                                         title="Update complaint filed"
                                     >
                                         <i class="fas fa-file-signature"></i>
@@ -113,7 +120,7 @@
                                 @else 
                                     <a 
                                         href="{{ route('user-complaints.create') }}?id={{ $resident->id }}" 
-                                        class="btn btn-warning" 
+                                        class="btn btn-dark" 
                                         title="File a complaint"
                                     >
                                         <i class="fas fa-file-signature"></i>

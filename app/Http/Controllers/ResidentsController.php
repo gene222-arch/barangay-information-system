@@ -60,6 +60,7 @@ class ResidentsController extends Controller
     public function store(StoreRequest $request, ResidentAction $action)
     {
         $action->store(
+            $request->user_type,
             $request->name,
             $request->birthed_at,
             $request->email,
@@ -69,9 +70,12 @@ class ResidentsController extends Controller
             $request->phone_number,
         );
 
-        return Redirect::route('residents.index')
+
+        $route = $request->user_type !== 'Non Resident' ? 'residents.index' : 'residents.none';
+
+        return Redirect::route($route)
             ->with([
-                'successMessage' => 'Resident registered successfully'
+                'successMessage' => 'Created successfully'
             ]);
     }
 
@@ -138,9 +142,11 @@ class ResidentsController extends Controller
             $request->phone_number,
         );
 
-        return Redirect::route('residents.index')
+        $route = $request->user_type !== 'Non Resident' ? 'residents.index' : 'residents.none';
+
+        return Redirect::route($route)
             ->with([
-                'successMessage' => 'Resident updated successfully'
+                'successMessage' => 'Updated successfully'
             ]);
     }
 

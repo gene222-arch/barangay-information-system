@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class ResidentAction 
 {
     public function store(
+        string $userType,
         string $name, 
         string $birthedAt, 
         string $email, 
@@ -20,7 +21,7 @@ class ResidentAction
     ): bool|string
     {
         try {
-            DB::transaction(function () use ($name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
+            DB::transaction(function () use ($userType, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
             {
                 $resident = User::create([ 
                     'name' => $name, 
@@ -38,7 +39,7 @@ class ResidentAction
                         'birthed_at' => $birthedAt
                     ]);
 
-                $resident->assignRole('Resident');
+                $resident->assignRole($userType);
             });
         } catch (\Throwable $th) {
             return $th->getMessage();

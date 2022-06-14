@@ -105,7 +105,7 @@
                                             name="gender" 
                                             id="flexRadioDefault1" 
                                             value="Male"
-                                            {{  $resident->gender === 'Male' ? 'checked' : '' }}
+                                            {{  $resident->details->gender === 'Male' ? 'checked' : '' }}
                                         >
                                         <label class="form-check-label" for="flexRadioDefault1">
                                           Male
@@ -118,7 +118,7 @@
                                             name="gender" 
                                             value="Female"
                                             id="flexRadioDefault2"
-                                            {{ $resident->gender === 'Female' ? 'checked' : '' }}
+                                            {{ $resident->details->gender === 'Female' ? 'checked' : '' }}
                                         >
                                         <label class="form-check-label" for="flexRadioDefault2">
                                           Female
