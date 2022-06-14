@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\PDF;
 
 class ExportsController extends Controller
@@ -13,7 +14,14 @@ class ExportsController extends Controller
             'resident' => $resident
         ]);
 
-        return $pdf->stream('barangay-clearance.pdf');
+        $filename = 'barangay-clearance.pdf';
+
+        $resident->documents()->create([
+            'type' => 'Barangay Clearance',
+            'name' => $filename,
+        ]);
+
+        return $pdf->stream($filename);
     }
 
     public function certificateOfIndigency(User $resident)
@@ -22,7 +30,14 @@ class ExportsController extends Controller
             'resident' => $resident
         ]);
 
-        return $pdf->stream('certificate-of-indigency.pdf');
+        $filename = 'certificate-of-indigency.pdf';
+
+        $resident->documents()->create([
+            'type' => 'Certificate of Indigency',
+            'name' => $filename,
+        ]);
+
+        return $pdf->stream($filename);
     }
 
     public function certificateOfRegistration(User $resident)
@@ -31,7 +46,14 @@ class ExportsController extends Controller
             'resident' => $resident
         ]);
 
-        return $pdf->stream('certificate-of-registration.pdf');
+        $filename = 'certificate-of-registration.pdf';
+
+        $resident->documents()->create([
+            'type' => 'Certificate of Registration',
+            'name' => $filename,
+        ]);
+
+        return $pdf->stream($filename);
     }
 
     public function id(User $resident)
@@ -40,6 +62,13 @@ class ExportsController extends Controller
             'resident' => $resident
         ]);
 
-        return $pdf->stream('id.pdf');
+        $filename = Str::slug($resident->name) . '-ID.pdf';
+
+        $resident->documents()->create([
+            'type' => 'Barangay ID',
+            'name' => $filename,
+        ]);
+
+        return $pdf->stream($filename);
     }
 }

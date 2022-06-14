@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\AssistanceRequest;
+use App\Models\Document;
 use App\Models\Schedule;
 use App\Models\UserDetail;
 use App\Models\Reservation;
 use App\Models\UserComplaint;
+use App\Models\AssistanceRequest;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -51,9 +52,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function details(): HasOne
+    public function activeComplaint()
     {
-        return $this->hasOne(UserDetail::class);
+        return $this->complaints()->firstWhere('is_solved', 'No');
+    }
+
+    public function assistanceRequests(): HasMany 
+    {
+        return $this->hasMany(AssistanceRequest::class);
     }
 
     public function complaints(): HasMany
@@ -61,9 +67,14 @@ class User extends Authenticatable
         return $this->hasMany(UserComplaint::class);
     }
 
-    public function activeComplaint()
+    public function details(): HasOne
     {
-        return $this->complaints()->firstWhere('is_solved', 'No');
+        return $this->hasOne(UserDetail::class);
+    }
+
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class);
     }
 
     public function notes(): HasMany
@@ -79,10 +90,5 @@ class User extends Authenticatable
     public function reservations(): HasMany 
     {
         return $this->hasMany(Reservation::class);
-    }
-
-    public function assistanceRequests(): HasMany 
-    {
-        return $this->hasMany(AssistanceRequest::class);
     }
 }
