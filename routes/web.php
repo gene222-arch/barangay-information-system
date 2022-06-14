@@ -51,6 +51,10 @@ Route::group([
         Route::resource('notes', NotesController::class);
         Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])
             ->name('residents.none');
+        Route::get('/non-residents/create', [ResidentsController::class, 'create'])
+            ->name('residents.none.create');
+        Route::get('/non-residents/{resident}', [ResidentsController::class, 'edit'])
+            ->name('residents.none.edit');
         Route::resource('residents', ResidentsController::class);
         Route::post('/residents/view-by-barcode', [ResidentsController::class, 'showViaBarcode'])
             ->name('residents.barcode');

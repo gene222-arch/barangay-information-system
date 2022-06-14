@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2 class="jumbotron display-6">Edit Resident</h2>
+        <h2 class="jumbotron display-6">Edit {{ request()->is('/residents/*') ? 'Resident' : 'Non Resident' }}</h2>
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="card">
@@ -12,9 +12,11 @@
                             @method('PUT')
 
                             <div class="my-5">
-                                <p class="lead">Resident Information</p>
+                                <p class="lead">{{ request()->is('/residents/*') ? 'Resident' : 'Non Resident' }} Information</p>
                                 <div class="dropdown-divider"></div>
                             </div>
+
+                            <input type="hidden" name="user_type" value="{{ request()->is('/residents/*') ? 'Resident' : 'Non Resident' }}">
 
                             <div class="row mb-3">
                                 <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -132,11 +134,7 @@
                             <div class="row mb-3">
                                 <div class="col-md-8 mx-auto">
                                     <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">  Civil Status </label>
-                                        </div>
                                         <select class="custom-select @error('civil_status') is-invalid @enderror" id="inputGroupSelect01" name="civil_status">
-                                            <option selected>Choose...</option>
                                             @foreach(['Single', 'Married', 'Widowed', 'Separated', 'Divorced'] as $civilStatus)
                                                 <option value="{{ $civilStatus }}" {{ $resident->details->civil_status === $civilStatus ? 'selected' : '' }}>{{ $civilStatus  }}</option>
                                             @endforeach

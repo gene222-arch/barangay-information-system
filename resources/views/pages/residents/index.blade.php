@@ -21,7 +21,7 @@
     <div class="table-responsive">
         <div class="text-right">
             <a 
-                href="{{ route('residents.create') }}"
+                href="{{ request()->is('/residents/*') ? route('residents.create') : route('residents.none.create') }}"
                 class="btn btn-success mb-2 px-2"
                 data-toggle="tooltip" 
                 data-placement="left" 
