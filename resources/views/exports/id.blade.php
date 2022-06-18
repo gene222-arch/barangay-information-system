@@ -6,69 +6,103 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 <style>
+
+    @page { 
+        size: 6.7cm 9.9cm landscape; 
+    }
+
     body {
         margin: 0;
-        line-height: 1.6;
+        padding: 0;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 1rem;
-    }
-    .card {
-        border: 1px 1px solid black;
-        height: 13rem;
-    }
-    .card-body {
-        margin-top: 1.5rem;
-    }
-    .card-img-top {
-        border-radius: 5%;
-    }
-    .info {
         font-size: 0.8rem;
+    }
+
+    section {
+        float: left;
+    }
+
+    .card-img-top {
+        margin-left: -2rem;
+        border-radius: 0.5rem;
+    }
+
+    .section-one {
+        margin-right: 1rem;
+    }
+
+    .label {
+        font-size: 0.5rem;
+        font-weight: 400;
+    }
+
+    .barcode {
+        position: absolute;
+        bottom: -10%;
+    }
+
+    small {
+        font-size: 0.55rem;
+        font-weight: bold;
+    }
+
+    .name {
+        font-weight: bold;
+    }
+
+    .header {
+        margin-top: -2rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .header p {
+        background-color: lightblue;
+        width: 100%;
+        font-size: 0.7rem;
+        font-weight: bold;
     }
 </style>
 </head>
 <body>
     <div class="card">
         <div class="card-body">
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <img 
-                                class="card-img-top" 
-                                src="./storage/avatars/{{ $resident->details->avatar_path }}" 
-                                height="100" 
-                                width="100" 
-                                alt="{{ $resident->name }}"
-                            >
-                        </td>
-                        <td>
-                            <p class="info" style="margin-left: 5rem;">
-                                <strong>First, Middle, Last</strong> <br>
-                                <span style="margin-left: 0.5rem;">{{ $resident->name }}</span>
-                            </p>
-                            <p class="info" style="margin-left: 5rem;">
-                                <strong>Gender </strong>
-                                <strong>Civil Status </strong><br>
-                                <span style="margin-left: 0.5rem;">{{ $resident->details->gender }}</span>
-                                <span style="margin-left: 2rem;">{{ $resident->details->civil_status }}</span>
-                            </p>
-                            <p class="info" style="margin-left: 5rem;">
-                                <strong>Address </strong> <br>
-                                <span style="margin-left: 0.5rem;">{{ $resident->details->address }}</span>
-                            </p>
-                        </td>
-                        <td>
-                            <img 
-                                src="data:image/png;base64,{{ DNS1D::getBarcodePNG($resident->details->barcode,'C128') }}" 
-                                height="60" 
-                                width="180"
-                                style="margin-left: 5rem;"
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="header">
+                <p style="text-align: center;">BARANGAY RESIDENTS CARD</p>
+            </div>
+            <section class="section-one">
+                <img 
+                    class="card-img-top" 
+                    src="./storage/{{ $resident->details->avatar_path }}" 
+                    height="132" 
+                    width="132" 
+                    alt="{{ $resident->name }}"
+                >
+            </section>
+            <section class="section-two">
+                <p class="info">
+                    <strong class="label">First, Middle, Last</strong> <br>
+                    <span class="name">{{ $resident->name }}</span>
+                </p>
+                <p class="info">
+                    <strong class="label">DATE OF BIRTH</strong>
+                    <strong class="label">Gender</strong>
+                    <strong class="label">Civil Status </strong><br>
+                    <small>{{ $resident->details->birthed_at }}</small>
+                    <small style="margin-left: 1.12rem;">{{ $resident->details->gender }}</small>
+                    <small style="margin-left: 0.6rem;">{{ $resident->details->civil_status }}</small>
+                </p>
+                <p class="info">
+                    <strong class="label">Address </strong> <br>
+                    <small>{{ $resident->details->address }}</small>
+                </p>
+            </section>
+            <section class="barcode">
+                <img 
+                    src="data:image/png;base64,{{ DNS1D::getBarcodePNG($resident->details->barcode,'C128') }}" 
+                    height="40" 
+                    width="70"
+                />
+            </section>
         </div>
     </div>
 </body>

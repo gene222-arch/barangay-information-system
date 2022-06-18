@@ -1,4 +1,4 @@
-<header style="text-align: center; margin-top: -2.5rem;">
+<header style="text-align: center;">
     <small class="header">Republic of the Philippines</small><br>
     <small class="header">Lalawigan ng Laguna</small><br>
     <small class="header">Lungsod ng Calamba</small>
