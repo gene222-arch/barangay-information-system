@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\UserDetail;
+use Illuminate\Support\Str;
 use App\Actions\ResidentAction;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Resident\StoreRequest;
 use App\Http\Requests\Resident\UpdateRequest;
 use App\Http\Requests\ResidentShowViaBarcodeRequest;
-use App\Models\User;
-use App\Models\UserDetail;
-use Illuminate\Support\Facades\Redirect;
 
 class ResidentsController extends Controller
 {
@@ -22,6 +23,7 @@ class ResidentsController extends Controller
         $residents = User::role('Resident')
             ->with(['details', 'complaints'])
             ->where('id', '!=', 1)
+            ->latest()
             ->get();
         
         return view('pages.residents.index', [
@@ -34,6 +36,7 @@ class ResidentsController extends Controller
         $residents = User::role('Non Resident')
             ->with(['details', 'complaints'])
             ->where('id', '!=', 1)
+            ->latest()
             ->get();
         
         return view('pages.residents.index', [
@@ -59,7 +62,24 @@ class ResidentsController extends Controller
      */
     public function store(StoreRequest $request, ResidentAction $action)
     {
+        $path = '';
+
+        if ($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+
+            $originalFilename = $file->getClientOriginalName();
+            
+            $ext = $file->getClientOriginalExtension();
+            $filename = pathinfo($originalFilename, PATHINFO_FILENAME);
+            $newFilename = "${filename}-" . time() . ".${ext}";
+
+            $path = $file->storeAs('public/residents/avatars', $newFilename);
+            $path = Str::of($path)->replace('public/', '');
+        }
+
         $action->store(
+            $path,
             $request->user_type,
             $request->name,
             $request->birthed_at,
@@ -131,8 +151,25 @@ class ResidentsController extends Controller
      */
     public function update(UpdateRequest $request, User $resident, ResidentAction $action)
     {
+        $path = $resident->details->avatar_path;
+
+        if ($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+
+            $originalFilename = $file->getClientOriginalName();
+            
+            $ext = $file->getClientOriginalExtension();
+            $filename = pathinfo($originalFilename, PATHINFO_FILENAME);
+            $newFilename = "${filename}-" . time() . ".${ext}";
+
+            $path = $file->storeAs('public/residents/avatars', $newFilename);
+            $path = Str::of($path)->replace('public/', '');
+        }
+
         $action->update(
             $resident,
+            $path,
             $request->name,
             $request->birthed_at,
             $request->email,

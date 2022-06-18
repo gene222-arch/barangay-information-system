@@ -13,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && auth()->user()->hasRole('Administrator');
+        return auth()->check();
     }
 
     /**
@@ -24,6 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'image' => ['required', 'image'],
             'name' => ['required', 'string'],
             'birthed_at' => ['required', 'date', 'date_format:Y-m-d'],
             'email' => ['required', 'email', 'unique:users'],

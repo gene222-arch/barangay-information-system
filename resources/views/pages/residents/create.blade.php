@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2 class="jumbotron display-6">Add {{ request()->is('/residents/*') ? 'Resident' : 'Non Resident' }}</h2>
+        <h2 class="jumbotron display-6">Add {{ request()->is('residents/*') ? 'Resident' : 'Non Resident' }}</h2>
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="card">
@@ -10,11 +10,35 @@
                         <form method="POST" action="{{ route('residents.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="my-5">
-                                <p class="lead">{{ request()->is('/residents/*') ? 'Resident' : 'Non Resident' }} Information</p>
+                                <p class="lead">{{ request()->is('residents/*') ? 'Resident' : 'Non Resident' }} Information</p>
                                 <div class="dropdown-divider"></div>
                             </div>
 
-                            <input type="hidden" name="user_type" value="{{ request()->is('/residents/*') ? 'Resident' : 'Non Resident' }}">
+                            <div class="col-md-12 d-none">
+                                <div class="form-group">
+                                    <input type="file" name="image" placeholder="Choose image" id="image">
+                                      @error('image')
+                                      <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                      @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2 text-center mb-2">
+                                <label for="image" style="cursor: pointer;">
+                                    <img 
+                                        id="preview-image-before-upload" 
+                                        src="{{ asset('avatar.png') }}"
+                                        alt="preview image" 
+                                        style="max-height: 250px;"
+                                    >
+                                    @error('image')
+                                        <p class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </p>
+                                    @enderror
+                                </label>
+                            </div>
+
+                            <input type="hidden" name="user_type" value="{{ request()->is('residents/*') ? 'Resident' : 'Non Resident' }}">
  
                             <div class="row mb-3">
                                 <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -164,4 +188,22 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function (e) 
+        {
+            $('#image').change(function()
+            {
+                let reader = new FileReader();
+                
+                reader.onload = (e) => {
+                    $('#preview-image-before-upload').attr('src', e.target.result); 
+                }
+                
+                reader.readAsDataURL(this.files[0]); 
+            });
+        });
+    </script>
 @endsection

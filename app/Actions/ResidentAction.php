@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class ResidentAction 
 {
     public function store(
+        string $avatarPath,
         string $userType,
         string $name, 
         string $birthedAt, 
@@ -21,7 +22,7 @@ class ResidentAction
     ): bool|string
     {
         try {
-            DB::transaction(function () use ($userType, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
+            DB::transaction(function () use ($avatarPath, $userType, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
             {
                 $resident = User::create([ 
                     'name' => $name, 
@@ -32,6 +33,7 @@ class ResidentAction
                 $resident
                     ->details()
                     ->create([
+                        'avatar_path' => $avatarPath,
                         'phone_number' => $phoneNumber,
                         'gender' => $gender,
                         'address' => $address,
@@ -50,6 +52,7 @@ class ResidentAction
 
     public function update(
         User $user, 
+        string $avatarPath,
         string $name, 
         string $birthedAt, 
         string $email, 
@@ -60,7 +63,7 @@ class ResidentAction
     ): bool|string
     {
         try {
-            DB::transaction(function () use ($user, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
+            DB::transaction(function () use ($user, $avatarPath, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
             {
                 $user->update([ 
                     'name' => $name, 
@@ -70,6 +73,7 @@ class ResidentAction
                 $user
                     ->details()
                     ->update([
+                        'avatar_path' => $avatarPath,
                         'phone_number' => $phoneNumber,
                         'gender' => $gender ?? $user->details->gender,
                         'address' => $address,

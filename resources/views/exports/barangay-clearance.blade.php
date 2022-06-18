@@ -71,16 +71,7 @@
 </head>
 <body>
     <main>
-        <header style="text-align: center">
-            <small class="header">Republic of the Philippines</small><br>
-            <small class="header">Lalawigan ng Laguna</small><br>
-            <small class="header">Lungsod ng Calamba</small>
-        </header>
-
-        <header style="text-align: center; margin-top: -3.5rem;">
-            <h2 style="text-align: center;">SANGGUNIANG BARANGAY LINGGA</h5>
-            <h6>TANGGAPAN NG PUNONG BARANGAY</h6>
-        </header>
+        @include('exports.includes.header')
         <hr style="margin-top: -2.25rem; color: blue;">
         <h1 style="text-align: center; margin-top: -3.5rem;text-decoration: underline;">PAGPAPATUNAY</h1>
         <div class="container">

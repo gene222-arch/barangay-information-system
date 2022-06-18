@@ -10,23 +10,26 @@
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             line-height: 1.6;
         }
+
+        .cell {
+            float: left;
+        }
+
+        .right {
+            margin-left: -15rem;
+        }
     </style>
 </head>
 <body>
     <main>
-        <header style="text-align: center">
-            <p>Republic of the Philippines</p>
-            <p><b>Barangay Lingga</b></p>
-            <p>Calamba City</p>
-        </header>
+        @include('exports.includes.header')
 
         <h2 style="text-align: center; margin-bottom: 20px;">CERTIFICATE OF INDIGENCY</h5>
         <p>
-            <p style="margin-left: 5rem; margin-top: 2rem;"><strong>TO WHOM IT MAY CONCERN:</strong></p>
             <p style="margin-left: 5rem;">
-                This is to certify that <i>{{ $resident->name }}</i> with residence at {{ $resident->details->address }},
-                Calamba City, belongs to one of the many indigent families of Barangay Lingga, Calamba City. The income of
-                his/her family is barely enough to meet their day to day needs.
+                This is to certify that <i>{{ $resident->name }}</i>, <strong>28</strong> years old, a bonafide
+                resident of {{ $resident->details->address }} belongs to one of the many indigent families of Barangay Lingga, City of Calamba.
+                The income of his/her family is barely enough to meet their day to day needs.
             </p>
 
             <p style="margin-left: 5rem; margin-top: 2rem; text-align:center">
@@ -36,14 +39,27 @@
             <p style="margin-left: 5rem; margin-top: 2rem;">
                 Issued this {{ \Carbon\Carbon::now()->format('d') }} day of {{ \Carbon\Carbon::now()->format('M') }}, {{ \Carbon\Carbon::now()->format('Y') }} at Barangay Lingga, Calamba City Laguna.
             </p>
-
-            <p style="margin-top: 5rem; margin-left: 5rem;">
-                <strong>Darwin C. Retusto</strong>
-            </p>
-            <p style="font-size: 0.9rem; margin-left: 5rem;">
-                Punong Barangay
-            </p>
         </p>
+    
+        <div>
+            <div class="cell left">
+                @include('exports.includes.kagawads')
+            </div>
+            <div class="cell right">
+                <p>
+                    <p>______________________________</p>
+                    <p style="text-align: center; margin-top: -1rem;">Signature over printed name</p>
+                </p>
+                <div style="text-align: right; margin-right: 2rem;">
+                    <p style="margin-top: 5rem;">
+                        <strong>Darwin C. Retusto</strong>
+                    </p>
+                    <p style="font-size: 0.9rem; margin-top: -1rem; margin-right: 0.8rem;">
+                        Punong Barangay
+                    </p>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 </html>

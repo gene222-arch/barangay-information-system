@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && auth()->user()->hasRole('Administrator');
+        return auth()->check();
     }
 
     /**
@@ -26,6 +26,7 @@ class UpdateRequest extends FormRequest
         $id = $this->input('residentId');
 
         return [
+            'avatar_path' => ['nullable'],
             'name' => ['required', 'string'],
             'birthed_at' => ['required', 'date', 'date_format:Y-m-d'],
             'email' => ['required', 'email', "unique:users,email,$id"],

@@ -99,6 +99,17 @@
                         </form>
                     </p>
                     <p>
+                        <form action="{{ route('export.barangay-certification', $resident->id) }}">
+                            <button 
+                                type="submit"
+                                class="btn btn-light text-dark btn-block"
+                                {{ $resident->activeComplaint() ? 'disabled' : '' }}
+                            >
+                                Generate Barangay Certification
+                            </button>
+                        </form>
+                    </p>
+                    <p>
                         <form action="{{ route('export.cert.of.indegency', $resident->id) }}">
                             <button 
                                 type="submit"

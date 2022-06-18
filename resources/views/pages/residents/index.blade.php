@@ -21,7 +21,7 @@
     <div class="table-responsive">
         <div class="text-right">
             <a 
-                href="{{ request()->is('/residents/*') ? route('residents.create') : route('residents.none.create') }}"
+                href="{{ request()->is('residents') ? route('residents.create') : route('residents.none.create') }}"
                 class="btn btn-success mb-2 px-2"
                 data-toggle="tooltip" 
                 data-placement="left" 
@@ -69,13 +69,23 @@
                                 >
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a 
-                                    href="{{ route('residents.edit', $resident->id) }}" 
-                                    class="btn btn-warning" 
-                                    title="Edit"
-                                >
-                                    <i class="fa-solid fa-pencil"></i>
-                                </a>
+                                @if (request()->is('residents/*'))
+                                    <a 
+                                        href="{{ route('residents.edit', $resident->id) }}" 
+                                        class="btn btn-warning" 
+                                        title="Edit"
+                                    >
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </a>
+                                @else
+                                    <a 
+                                        href="{{ route('residents.none.edit', $resident->id) }}" 
+                                        class="btn btn-warning" 
+                                        title="Edit"
+                                    >
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </a>
+                                @endif
                                 <button 
                                     title="Delete" 
                                     type="button" 
