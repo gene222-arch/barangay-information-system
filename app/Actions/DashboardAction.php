@@ -11,9 +11,19 @@ class DashboardAction
 {
     public function generalAnalytics(): array
     {
-        $residentsCount = User::role('Resident')->count();
-        $nonResidentsCount = User::role('Non Resident')->count();
-        $documentsCount = Document::count();
+        $documentsRevenue = Document::sum('cost');
+
+        $docs = Document::selectRaw('type, COUNT(*) as count')
+            ->groupBy('type')
+            ->get()
+            ->mapWithKeys(fn ($doc) => [$doc['type'] => $doc['count']]);
+        
+        $users = User::query()
+            ->with('roles')
+            ->role(['Resident', 'Non Resident'])
+            ->get()
+            ->groupBy(fn ($user) => $user->roles->first()->name)
+            ->mapWithKeys(fn ($role, $key) => [$key => $role->count()]);
 
         $schedulesCount = Schedule::count();
         $blottersCount = UserComplaint::where([
@@ -26,9 +36,14 @@ class DashboardAction
         ])->count();
 
         return [
-            'documentsCount' => $documentsCount,
-            'nonResidentsCount' => $nonResidentsCount,
-            'residentsCount' => $residentsCount,
+            'brgyCert' => $docs["Barangay Certification"],
+            'brgyClearance' => $docs["Barangay Clearance"],
+            'brgyId' => $docs["Barangay ID"],
+            'certOfIndigency' => $docs["Certificate of Indigency"],
+            'certOfReg' => $docs["Certificate of Registration"],
+            'documentsRevenue' => $documentsRevenue,
+            'nonResidentsCount' => $users['Non Resident'],
+            'residentsCount' => $users['Resident'],
             'schedulesCount' => $schedulesCount,
             'blottersCount' => $blottersCount
         ];

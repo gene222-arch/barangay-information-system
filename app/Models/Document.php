@@ -14,6 +14,12 @@ class Document extends Model
         'user_id',
         'type',
         'name',
+        'is_senior',
+        'cost',
+    ];
+
+    protected $casts = [
+        'is_senior' => 'boolean'
     ];
 
     public function user()

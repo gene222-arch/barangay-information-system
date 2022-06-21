@@ -38,7 +38,7 @@
                     <th scope="col">Phone Number</th>
                     <th scope="col">Address</th>
                     <th scope="col">Status</th>
-                    <th scope="col" colspan="3">Action</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +69,7 @@
                                 >
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                @if (request()->is('residents/*'))
+                                @if (request()->is('residents'))
                                     <a 
                                         href="{{ route('residents.edit', $resident->id) }}" 
                                         class="btn btn-warning" 

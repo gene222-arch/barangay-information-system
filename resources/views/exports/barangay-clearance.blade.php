@@ -67,6 +67,24 @@
             margin-left:auto;
             margin-right: auto;
         }
+
+        .imgContainer {
+            text-align: right;
+            margin-right: 2rem;
+        }
+
+        .card-img-top {
+            margin-top: -2.5rem;
+        }
+
+        .text-content {
+            margin-right: 1rem;
+        }
+
+        .type-active {
+            text-decoration: underline; 
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -107,11 +125,20 @@
             </div>
             <div class="cell right">
                 <p>
+                    <div class="imgContainer">
+                        <img 
+                            class="card-img-top" 
+                            src="./storage/{{ $resident->details->avatar_path }}" 
+                            height="96" 
+                            width="96" 
+                            alt="{{ $resident->name }}"
+                        >
+                    </div>
                     <p><strong>SA MGA KINAUUKULAN:</strong></p>
-                    <p>
+                    <p class="text-content">
                         Ito ay pagpapatunay na si <i>{{ $resident->name }}</i> 
-                        na may edad na <b>{{ $resident?->age ?? 20 }}</b> taong gulang, ipinanganak noong <b>AGOSTO</b><br>
-                        <b>20, 1981</b> <b style="text-decoration: underline;">binata/</b> dalaga / may asawa / balo at ipinanganak sa
+                        na may edad na <b>{{ $resident?->age ?? 20 }}</b> taong gulang, ipinanganak noong <b>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->format('M') }}</b><br>
+                        <b>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->format('d, Y') }}</b> <span class="{{ $type === 'binata' ? 'type-active' : '' }}">binata</span>/ <span class="{{ $type === 'dalaga' ? 'type-active' : '' }}">dalaga</span> / <span class="{{ $type === 'may asawa' ? 'type-active' : '' }}">may asawa</span> / <span class="{{ $type === '' ? 'type-active' : '' }}">balo</span> at ipinanganak sa
                         <b>{{ $resident->details->address }}</b> nakalagda sa ibaba ay
                         naninirahan sa Purok 5 Sampaguita Street, Barangay Lingga,
                         Calamba City, Laguna sapul pa noong <strong style="text-decoration: underline;">1981</strong> at walang kasong
@@ -145,9 +172,9 @@
                         </tr>
                     </table>
         
-                    <p>Iginawad ngayong ika - <span>18</span> ng Mayo 2022</p>
+                    <p>Iginawad ngayong ika - <span>{{ \Carbon\Carbon::now()->format('D') }}</span> ng {{ \Carbon\Carbon::now()->format('M Y') }}</p>
 
-                    <div style="margin-right: 1rem; text-align: right;">
+                    <div style="margin-right: 2rem; text-align: right;">
                         <p>
                             <strong>IGG. Darwin C. Retusto</strong>
                         </p>

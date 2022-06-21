@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssistanceRequestController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ExportsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotesController;
@@ -40,13 +41,7 @@ Route::group([
 
     Route::middleware('role:Administrator|Supervisor')->group(function () 
     {
-        Route::get(
-            '/documents', 
-            fn () => view('pages.documents.index', [  
-                'documents' => Document::with('user')->get(),
-            ])
-        )
-            ->name('documents.index');
+        Route::get('/documents',[DocumentController::class, 'index'])->name('documents.index');
 
         Route::resource('notes', NotesController::class);
         Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])

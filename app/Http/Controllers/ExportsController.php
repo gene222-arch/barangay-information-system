@@ -5,36 +5,62 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\PDF;
+use Carbon\Carbon;
 
 class ExportsController extends Controller
 {
     public function barangayClearance(User $resident)
     {
+        $resident = User::with('details')->find($resident->id);
+        $age = Carbon::parse($resident->details->birthed_at)->age;
+
+        $type = match($resident->details->gender) {
+            'Male' => 'binata',
+            'Female' => 'dalaga'
+        };
+
+        if ($resident->details->civil_status === 'Married') {
+            $type = 'may asawa';
+        }
+
         $pdf = PDF::loadView('exports.barangay-clearance', [
-            'resident' => $resident
+            'resident' => $resident,
+            'type' => $type,
         ]);
 
         $filename = 'barangay-clearance.pdf';
 
-        $resident->documents()->create([
-            'type' => 'Barangay Clearance',
-            'name' => $filename,
-        ]);
+        $isSenior = $age >= 60;
+
+        // $resident
+        //     ->documents()
+        //     ->create([
+        //         'type' => 'Barangay Clearance',
+        //         'name' => $filename,
+        //         'is_senior' => $isSenior,
+        //         'cost' => $isSenior ? 0 : 30.00,
+        //     ]);
 
         return $pdf->stream($filename);
     }
 
     public function barangayCertification(User $resident)
     {
+        $resident = User::with('details')->find($resident->id);
+
         $pdf = PDF::loadView('exports.barangay-certification', [
             'resident' => $resident
         ]);
 
-        $filename = 'barangay-certification.pdf';
+        $filename = "{$resident->name}.pdf";
+
+        $isSenior = Carbon::parse($resident->details->birthed_at)->age >= 60;
 
         $resident->documents()->create([
             'type' => 'Barangay Certification',
             'name' => $filename,
+            'is_senior' => $isSenior,
+            'cost' => $isSenior ? 0 : 30.00,
         ]);
 
         return $pdf->stream($filename);
@@ -42,15 +68,20 @@ class ExportsController extends Controller
 
     public function certificateOfIndigency(User $resident)
     {
+        $resident = User::with('details')->find($resident->id);
+
         $pdf = PDF::loadView('exports.certificate-of-indigency', [
             'resident' => $resident
         ]);
 
-        $filename = 'certificate-of-indigency.pdf';
+        $filename = "{$resident->name}.pdf";
+        $isSenior = Carbon::parse($resident->details->birthed_at)->age >= 60;
 
         $resident->documents()->create([
             'type' => 'Certificate of Indigency',
             'name' => $filename,
+            'is_senior' => $isSenior,
+            'cost' => $isSenior ? 0 : 30.00,
         ]);
 
         return $pdf->stream($filename);
@@ -58,15 +89,20 @@ class ExportsController extends Controller
 
     public function certificateOfRegistration(User $resident)
     {
+        $resident = User::with('details')->find($resident->id);
+
         $pdf = PDF::loadView('exports.certificate-of-registration', [
             'resident' => $resident
         ]);
 
-        $filename = 'certificate-of-registration.pdf';
+        $filename = "{$resident->name}.pdf";
+        $isSenior = Carbon::parse($resident->details->birthed_at)->age >= 60;
 
         $resident->documents()->create([
             'type' => 'Certificate of Registration',
             'name' => $filename,
+            'is_senior' => $isSenior,
+            'cost' => $isSenior ? 0 : 30.00,
         ]);
 
         return $pdf->stream($filename);
@@ -74,15 +110,20 @@ class ExportsController extends Controller
 
     public function id(User $resident)
     {
+        $resident = User::with('details')->find($resident->id);
+
         $pdf = PDF::loadView('exports.id', [
             'resident' => $resident
         ]);
 
-        $filename = Str::slug($resident->name) . '-ID.pdf';
+        $filename = "{$resident->name}.pdf";
+        $isSenior = Carbon::parse($resident->details->birthed_at)->age >= 60;
 
         $resident->documents()->create([
             'type' => 'Barangay ID',
             'name' => $filename,
+            'is_senior' => $isSenior,
+            'cost' => $isSenior ? 0 : 30.00,
         ]);
 
         return $pdf->stream($filename);

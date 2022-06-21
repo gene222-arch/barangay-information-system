@@ -39,6 +39,21 @@
             <div class="card border-dark mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+                        <div class="card-body text-success">
+                            <h5 class="card-title"><h3><strong>₱{{ $documentsRevenue }}</strong></h3></h5>
+                            <p class="card-text text-secondary">Documents Revenue</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                        <i class="fas fa-file-invoice-dollar fa-3x text-success"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+            <div class="card border-dark mb-3">
+                <div class="row align-items-center">
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                         <div class="card-body text-dark">
                             <h5 class="card-title"><h3><strong>{{ $nonResidentsCount }}</strong></h3></h5>
                             <p class="card-text text-secondary">Non Residents</p>
@@ -51,22 +66,22 @@
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-success mb-3">
+            <div class="card border-dark mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="card-body text-success">
+                        <div class="card-body text-info">
                             <h5 class="card-title"><h3><strong>{{ $residentsCount }}</strong></h3></h5>
                             <p class="card-text text-secondary">Residents</p>
                         </div>
                     </div>
                     <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                        <i class="fas fa-users fa-3x text-success"></i>
+                        <i class="fas fa-users fa-3x text-info"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-warning mb-3">
+            <div class="card border-dark mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                         <div class="card-body text-warning">
@@ -81,7 +96,7 @@
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-danger mb-3">
+            <div class="card border-dark mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                         <div class="card-body text-danger">
@@ -95,13 +110,75 @@
                 </div>
             </div>
         </div>
+        <div class="divider mt-4"></div>
+        <h3><strong>Documents</strong></h3>
         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
             <div class="card border-info mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                         <div class="card-body text-info">
-                            <h5 class="card-title"><h3><strong>{{ $documentsCount }}</strong></h3></h5>
-                            <p class="card-text text-secondary">Documents Requested</p>
+                            <h5 class="card-title"><h3><strong>{{ $brgyCert }}</strong></h3></h5>
+                            <p class="card-text text-secondary">Barangay Certification</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+            <div class="card border-info mb-3">
+                <div class="row align-items-center">
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+                        <div class="card-body text-info">
+                            <h5 class="card-title"><h3><strong>{{ $brgyClearance }}</strong></h3></h5>
+                            <p class="card-text text-secondary">Barangay Clearance</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+            <div class="card border-info mb-3">
+                <div class="row align-items-center">
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+                        <div class="card-body text-info">
+                            <h5 class="card-title"><h3><strong>{{ $brgyId }}</strong></h3></h5>
+                            <p class="card-text text-secondary">Barangay ID</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+            <div class="card border-info mb-3">
+                <div class="row align-items-center">
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+                        <div class="card-body text-info">
+                            <h5 class="card-title"><h3><strong>{{ $certOfIndigency }}</strong></h3></h5>
+                            <p class="card-text text-secondary">Certificate of Indigency</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+            <div class="card border-info mb-3">
+                <div class="row align-items-center">
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+                        <div class="card-body text-info">
+                            <h5 class="card-title"><h3><strong>{{ $certOfReg }}</strong></h3></h5>
+                            <p class="card-text text-secondary">Certificate of Registration</p>
                         </div>
                     </div>
                     <div class="col-4 col-sm-4 col-md-4 col-lg-4">
