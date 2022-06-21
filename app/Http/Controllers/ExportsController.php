@@ -32,14 +32,14 @@ class ExportsController extends Controller
 
         $isSenior = $age >= 60;
 
-        // $resident
-        //     ->documents()
-        //     ->create([
-        //         'type' => 'Barangay Clearance',
-        //         'name' => $filename,
-        //         'is_senior' => $isSenior,
-        //         'cost' => $isSenior ? 0 : 30.00,
-        //     ]);
+        $resident
+            ->documents()
+            ->create([
+                'type' => 'Barangay Clearance',
+                'name' => $filename,
+                'is_senior' => $isSenior,
+                'cost' => $isSenior ? 0 : 30.00,
+            ]);
 
         return $pdf->stream($filename);
     }
@@ -81,7 +81,6 @@ class ExportsController extends Controller
             'type' => 'Certificate of Indigency',
             'name' => $filename,
             'is_senior' => $isSenior,
-            'cost' => $isSenior ? 0 : 30.00,
         ]);
 
         return $pdf->stream($filename);

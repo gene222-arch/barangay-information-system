@@ -15,9 +15,6 @@
                                 <div class="row mb-3">
                                     <div class="col-md-8 mx-auto">
                                         <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <label class="input-group-text bg-light" for="inputGroupSelect01">Residents</label>
-                                            </div>
                                             <select 
                                                 class="custom-select @error('user_id') is-invalid @enderror" 
                                                 id="inputGroupSelect01" 
@@ -86,6 +83,40 @@
                                 </div>
                             </div>
 
+                            @hasrole('Administrator|Supervisor')
+                                <div class="row mb-3">
+                                    <div class="col-md-8 mx-auto">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text bg-light" for="inputGroupSelect01">Status</label>
+                                            </div>
+                                            <select 
+                                                class="custom-select @error('status') is-invalid @enderror" 
+                                                id="inputGroupSelect01" 
+                                                name="status"
+                                            >
+                                                @forelse (['Processing', 'Granted', 'Denied'] as $status)
+                                                    <option 
+                                                        value="{{ $status }}" {{ $assistanceRequest->status === $status ? 'selected' : '' }}
+                                                    >
+                                                        {{ $status  }}
+                                                    </option>
+                                                @empty
+                                                    <div class="alert alert-warning" role="alert">
+                                                        No residents yet....
+                                                    </div>
+                                                @endforelse
+                                            </select>
+                                            @error('status')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            @endhasrole
+
                             <div class="row mb-3">
                                 <label for="reason" class="col-md-4 col-form-label text-md-end">{{ __('Reason') }}</label>
 
@@ -105,40 +136,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            @hasrole('Administrator|Supervisor')
-                            <div class="row mb-3">
-                                <div class="col-md-8 mx-auto">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text bg-light" for="inputGroupSelect01">Status</label>
-                                        </div>
-                                        <select 
-                                            class="custom-select @error('status') is-invalid @enderror" 
-                                            id="inputGroupSelect01" 
-                                            name="status"
-                                        >
-                                            @forelse (['Processing', 'Granted', 'Denied'] as $status)
-                                                <option 
-                                                    value="{{ $status }}" {{ $assistanceRequest->status === $status ? 'selected' : '' }}
-                                                >
-                                                    {{ $status  }}
-                                                </option>
-                                            @empty
-                                                <div class="alert alert-warning" role="alert">
-                                                    No residents yet....
-                                                </div>
-                                            @endforelse
-                                        </select>
-                                        @error('status')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        @endhasrole
 
                             <div class="row mb-0 justify-content-end">
                                 <div class="col-md-3">

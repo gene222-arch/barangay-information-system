@@ -10,7 +10,11 @@ class DocumentController extends Controller
     public function index(Request $request)
     {
         $docs = Document::query()
-            ->when($request->has('document_type') && $request->filled('document_type'), fn ($query) => $query->where('type', $request->document_type))
+            ->when(
+                $request->has('document_type') && 
+                $request->filled('document_type'), 
+                fn ($query) => $query->where('type', $request->document_type)
+            )
             ->with('user')
             ->latest()
             ->get();

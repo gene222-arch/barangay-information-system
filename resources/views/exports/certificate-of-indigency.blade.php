@@ -15,8 +15,14 @@
             float: left;
         }
 
+        .left {
+            width: 20rem;
+            margin-left: -5rem;
+        }
+
         .right {
-            margin-left: -15rem;
+            margin-left: -16rem;
+            margin-top: 15rem;
         }
     </style>
 </head>
@@ -36,7 +42,7 @@
                 This certification is issued for whatever legal purpose may this serve.
             </p>
 
-            <p style="margin-left: 5rem; margin-top: 2rem;">
+            <p style="margin-left: 5rem; margin-top: -1rem;">
                 Issued this {{ \Carbon\Carbon::now()->format('d') }} day of {{ \Carbon\Carbon::now()->format('M') }}, {{ \Carbon\Carbon::now()->format('Y') }} at Barangay Lingga, Calamba City Laguna.
             </p>
         </p>
