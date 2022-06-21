@@ -46,7 +46,7 @@
                     <td>{{ $note->body }}</td>
                     <td>{{ \Carbon\Carbon::parse($note->created_at)->diffForHumans() }}</td>
                     <td>
-                        <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning">
+                        <a title='Edit' href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <button title="Delete note" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $note->id }}">

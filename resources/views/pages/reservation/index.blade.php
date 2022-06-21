@@ -51,10 +51,10 @@
                             {{ \Carbon\Carbon::parse($reservation->date)->format('M d, Y') }}
                         </td>
                         <td>
-                            {{ $reservation->start }}
+                            {{ \Carbon\Carbon::parse($reservation->start)->format('g:i A') }}
                         </td>
                         <td>
-                            {{ $reservation->end }}
+                            {{ \Carbon\Carbon::parse($reservation->end)->format('g:i A') }}
                         </td>
                         <td>
                             {{ $reservation->description }}
