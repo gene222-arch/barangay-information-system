@@ -9,7 +9,7 @@
             </button>
         </div>
     @endif
-    <h3 class="mb-5">
+    <h3>
         <strong>
             @if(request()->is('residents'))
                 Residents

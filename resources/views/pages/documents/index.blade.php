@@ -9,7 +9,7 @@
             </button>
         </div>
     @endif
-    <h3 class="mb-5">
+    <h3>
         <strong class="headerTitle">Documents</strong>
     </h3>
     <div class="text-right mb-4">
