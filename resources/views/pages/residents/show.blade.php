@@ -34,13 +34,25 @@
                             <strong>Birthday</strong>
                         </div>
                         <div class="col-6">
-                            {{ $resident->details->birthed_at }}
+                            {{ \Carbon\Carbon::parse($resident->details->birthed_at)->format('M d, Y') }}
                         </div>
                         <div class="col-6">
                             <strong>Address</strong>
                         </div>
                         <div class="col-6">
                             {{ $resident->details->address }}
+                        </div>
+                        <div class="col-6">
+                            <strong>Born in</strong>
+                        </div>
+                        <div class="col-6">
+                            {{ $resident->details->born_at }}
+                        </div>
+                        <div class="col-6">
+                            <strong>Date of stay</strong>
+                        </div>
+                        <div class="col-6">
+                            {{ \Carbon\Carbon::parse($resident->details->stayed_at)->format('M d, Y') }}
                         </div>
                         <div class="col-6">
                             <strong>Civil Status</strong>

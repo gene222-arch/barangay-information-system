@@ -60,7 +60,7 @@
                                 @endif 
                             </span>
                         </td>
-                        <td>
+                        <td class="w-45">
                             <div class="actions-container">
                                 <a 
                                     href="{{ route('residents.show', $resident->id) }}" 
@@ -153,5 +153,4 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
 @endsection
