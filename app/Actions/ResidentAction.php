@@ -14,15 +14,17 @@ class ResidentAction
         string $userType,
         string $name, 
         string $birthedAt, 
+        string $stayedAt,
         string $email, 
         string $gender, 
         string $address, 
+        string $bornAt,
         string $civilStatus, 
         string $phoneNumber,
     ): bool|string
     {
         try {
-            DB::transaction(function () use ($avatarPath, $userType, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
+            DB::transaction(function () use ($avatarPath, $userType, $name, $birthedAt, $stayedAt, $bornAt, $email, $gender, $address, $civilStatus, $phoneNumber)
             {
                 $resident = User::create([ 
                     'name' => $name, 
@@ -38,7 +40,9 @@ class ResidentAction
                         'gender' => $gender,
                         'address' => $address,
                         'civil_status' => $civilStatus,
-                        'birthed_at' => $birthedAt
+                        'birthed_at' => $birthedAt,
+                        'stayed_at' => $stayedAt,
+                        'born_at' => $bornAt,
                     ]);
 
                 $resident->assignRole($userType);
@@ -55,15 +59,17 @@ class ResidentAction
         string $avatarPath,
         string $name, 
         string $birthedAt, 
+        string $stayedAt,
         string $email, 
         ?string $gender, 
         string $address, 
+        string $bornAt,
         string $civilStatus, 
         string $phoneNumber
     ): bool|string
     {
         try {
-            DB::transaction(function () use ($user, $avatarPath, $name, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
+            DB::transaction(function () use ($user, $avatarPath, $name, $stayedAt, $bornAt, $birthedAt, $email, $gender, $address, $civilStatus, $phoneNumber)
             {
                 $user->update([ 
                     'name' => $name, 
@@ -78,7 +84,9 @@ class ResidentAction
                         'gender' => $gender ?? $user->details->gender,
                         'address' => $address,
                         'civil_status' => $civilStatus,
-                        'birthed_at' => $birthedAt
+                        'birthed_at' => $birthedAt,
+                        'stayed_at' => $stayedAt,
+                        'born_at' => $bornAt,
                     ]);
             });
         } catch (\Throwable $th) {

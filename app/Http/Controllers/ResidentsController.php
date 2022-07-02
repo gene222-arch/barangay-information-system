@@ -83,9 +83,11 @@ class ResidentsController extends Controller
             $request->user_type,
             $request->name,
             $request->birthed_at,
+            $request->stayed_at,
             $request->email,
             $request->gender,
             $request->address,
+            $request->born_at,
             $request->civil_status,
             $request->phone_number,
         );
@@ -172,9 +174,11 @@ class ResidentsController extends Controller
             $path,
             $request->name,
             $request->birthed_at,
+            $request->stayed_at,
             $request->email,
             $request->gender,
             $request->address,
+            $request->born_at,
             $request->civil_status,
             $request->phone_number,
         );

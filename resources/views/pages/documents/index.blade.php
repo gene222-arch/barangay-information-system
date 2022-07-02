@@ -36,7 +36,7 @@
             @foreach ($documents as $document)
                 <tr>
                     <td>
-                        {{ $document->user->name }}
+                        {{ $document?->user?->name ?? 'Unknown' }}
                     </td>
                     <td >
                         {{ $document->type }}

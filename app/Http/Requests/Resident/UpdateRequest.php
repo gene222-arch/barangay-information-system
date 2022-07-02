@@ -29,6 +29,8 @@ class UpdateRequest extends FormRequest
             'avatar_path' => ['nullable'],
             'name' => ['required', 'string'],
             'birthed_at' => ['required', 'date', 'date_format:Y-m-d'],
+            'stayed_at' => ['required', 'date', 'date_format:Y-m-d'],
+            'born_at' => ['required', 'string'],
             'email' => ['required', 'email', "unique:users,email,$id"],
             'gender' => ['required', 'string', 'in:Male,Female'],
             'address' => ['required', 'string'],

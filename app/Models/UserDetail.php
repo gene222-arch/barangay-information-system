@@ -18,7 +18,9 @@ class UserDetail extends Model
         'gender',
         'address',
         'civil_status',
-        'birthed_at'
+        'birthed_at',
+        'stayed_at',
+        'born_at',
     ];
 
     protected static function boot()

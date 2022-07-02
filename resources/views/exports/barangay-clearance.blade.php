@@ -139,9 +139,9 @@
                         Ito ay pagpapatunay na si <i>{{ $resident->name }}</i> 
                         na may edad na <b>{{ $resident?->age ?? 20 }}</b> taong gulang, ipinanganak noong <b>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->format('M') }}</b><br>
                         <b>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->format('d, Y') }}</b> <span class="{{ $type === 'binata' ? 'type-active' : '' }}">binata</span>/ <span class="{{ $type === 'dalaga' ? 'type-active' : '' }}">dalaga</span> / <span class="{{ $type === 'may asawa' ? 'type-active' : '' }}">may asawa</span> / <span class="{{ $type === '' ? 'type-active' : '' }}">balo</span> at ipinanganak sa
-                        <b>{{ $resident->details->address }}</b> nakalagda sa ibaba ay
+                        <b>{{ $resident->details->born_at }}</b> nakalagda sa ibaba ay
                         naninirahan sa Purok 5 Sampaguita Street, Barangay Lingga,
-                        Calamba City, Laguna sapul pa noong <strong style="text-decoration: underline;">1981</strong> at walang kasong
+                        Calamba City, Laguna sapul pa noong <strong style="text-decoration: underline;">{{ \Carbon\Carbon::parse($resident->details->stayed_at)->format('Y') }}</strong> at walang kasong
                         nabinbin dito.
                     </p>
         
@@ -172,7 +172,7 @@
                         </tr>
                     </table>
         
-                    <p>Iginawad ngayong ika - <span>{{ \Carbon\Carbon::now()->format('D') }}</span> ng {{ \Carbon\Carbon::now()->format('M Y') }}</p>
+                    <p>Iginawad ngayong ika - <span>{{ \Carbon\Carbon::now()->format('d') }}</span> ng {{ \Carbon\Carbon::now()->format('M Y') }}</p>
 
                     <div style="margin-right: 2rem; text-align: right;">
                         <p>
