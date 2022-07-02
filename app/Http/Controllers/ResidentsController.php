@@ -196,10 +196,6 @@ class ResidentsController extends Controller
     public function destroy(User $resident)
     {
         $name = $resident->name;
-
-        $resident->details()->delete();
-        $resident->removeRole('Resident');
-        $resident->complaints()?->delete();
         $resident->delete();
 
         return Redirect::route('residents.index')
