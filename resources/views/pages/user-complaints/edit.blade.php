@@ -58,11 +58,8 @@
                             <div class="row mb-3 justify-content-center">
                                 <div class="col-md-8 mx-auto">
                                     <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Type</label>
-                                        </div>
                                         <select class="custom-select @error('type') is-invalid @enderror" id="inputGroupSelect01" name="type">
-                                            <option selected>Choose...</option>
+                                            <option selected>Select complaint...</option>
                                             @foreach(['Blotter'] as $type)
                                                 <option value="{{ $type }}" {{ $userComplaint->type === $type ? 'selected' : '' }}>{{ $type }}</option>
                                             @endforeach

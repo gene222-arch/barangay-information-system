@@ -62,7 +62,7 @@
                                         id="birthed_at" 
                                         type="date" 
                                         class="form-control @error('birthed_at') is-invalid @enderror bg-light" name="birthed_at" 
-                                        value="{{ \Carbon\Carbon::parse(old('birthed_at'))->format('Y-d-m') }}"  
+                                        value="{{ old('birthed_at') }}"  
                                         autocomplete="birthed_at" autofocus
                                     >
                             
@@ -110,7 +110,7 @@
                                         id="stayed_at" 
                                         type="date" 
                                         class="form-control @error('stayed_at') is-invalid @enderror bg-light" name="stayed_at" 
-                                        value="{{ \Carbon\Carbon::parse(old('stayed_at'))->format('Y-d-m') }}"  
+                                        value="{{ old('stayed_at') }}"  
                                         autocomplete="stayed_at" autofocus
                                     >
                             
