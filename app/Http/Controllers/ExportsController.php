@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\PDF;
@@ -138,6 +139,19 @@ class ExportsController extends Controller
         ]);
 
         $filename = "court-reservation.pdf";
+
+        return $pdf->stream($filename);
+    }
+
+    public function schedules()
+    {
+        $schedules = Schedule::with('user')->get();
+
+        $pdf = PDF::loadView('exports.schedules', [
+            'schedules' => $schedules,
+        ]);
+
+        $filename = "schedules.pdf";
 
         return $pdf->stream($filename);
     }

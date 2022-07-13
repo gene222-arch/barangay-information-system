@@ -1,6 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('content')
+    <div class="text-right">
+        <a 
+            href="{{ route('export.schedules') }}"
+            class="btn btn-outline-danger mb-2 px-2"
+            data-toggle="tooltip" 
+            data-placement="left" 
+            title="Print"
+            data-html="true"
+        >
+            <i class="fas fa-file-pdf px-1"></i>
+        </a>
+    </div>
     <div id='calendar'></div>
 @endsection
 
