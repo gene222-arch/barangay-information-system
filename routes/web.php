@@ -67,6 +67,7 @@ Route::group([
                 Route::get('/certificate-of-indigency/{resident}', [ExportsController::class, 'certificateOfIndigency'])->name('cert.of.indegency');
                 Route::get('/certificate-of-registration/{resident}', [ExportsController::class, 'certificateOfRegistration'])->name('cert.of.registration');
                 Route::get('/id/{resident}', [ExportsController::class, 'id'])->name('id');
+                Route::get('/court-reservation', [ExportsController::class, 'courtReservation'])->name('court.reservation');
             });
         });
     });

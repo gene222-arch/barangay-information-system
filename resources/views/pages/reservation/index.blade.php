@@ -24,6 +24,16 @@
             >
                 <i class="fas fa-calendar-plus px-1"></i>
             </a>
+            <a 
+                href="{{ route('export.court.reservation') }}"
+                class="btn btn-outline-danger mb-2 px-2"
+                data-toggle="tooltip" 
+                data-placement="left" 
+                title="Print"
+                data-html="true"
+            >
+                <i class="fas fa-file-pdf px-1"></i>
+            </a>
         </div>
         <table class="table table-hover">
             <thead class="thead-dark">

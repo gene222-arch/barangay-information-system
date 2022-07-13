@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\PDF;
@@ -124,6 +125,19 @@ class ExportsController extends Controller
             'is_senior' => $isSenior,
             'cost' => $isSenior ? 0 : 30.00,
         ]);
+
+        return $pdf->stream($filename);
+    }
+
+    public function courtReservation()
+    {
+        $courtReservations = Reservation::with('user')->get();
+
+        $pdf = PDF::loadView('exports.court-reservation', [
+            'courtReservations' => $courtReservations
+        ]);
+
+        $filename = "court-reservation.pdf";
 
         return $pdf->stream($filename);
     }
