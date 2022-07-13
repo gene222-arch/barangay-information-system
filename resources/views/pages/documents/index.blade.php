@@ -17,7 +17,7 @@
             @csrf
             <select name="document_type" class="doctype" onchange="this.form.submit()">
                 <option value="">Filter Type</option>
-                @foreach (['Certificate of Indigency', 'Barangay Clearance', 'Barangay ID', 'Certificate of Indigency', 'Certificate of Registration', 'Barangay Certification'] as $documentType)
+                @foreach (['Barangay Clearance', 'Barangay ID', 'Certificate of Indigency', 'Barangay Certification'] as $documentType)
                     <option {{ $documentType === $docType ? 'selected' : '' }} value="{{ $documentType }}">{{ $documentType }}</option>
                 @endforeach
             </select>
@@ -42,7 +42,7 @@
                         {{ $document->type }}
                     </td>
                     <td>{{ $document->name }}</td>
-                    <td>{{ \Carbon\Carbon::parse($document->created_at)->diffForHumans() }}</td>
+                    <td>{{ \Carbon\Carbon::parse($document->created_at)->format('M d, Y') }}</td>
                 </tr>
             @endforeach
         </tbody>
