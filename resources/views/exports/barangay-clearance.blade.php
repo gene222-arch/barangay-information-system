@@ -137,11 +137,10 @@
                     <p><strong>SA MGA KINAUUKULAN:</strong></p>
                     <p class="text-content">
                         Ito ay pagpapatunay na si <i>{{ $resident->name }}</i> 
-                        na may edad na <b>{{ $resident?->age ?? 20 }}</b> taong gulang, ipinanganak noong <b>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->format('M') }}</b><br>
+                        na may edad na <b>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->age }}</b> taong gulang, ipinanganak noong <b>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->format('M') }}</b><br>
                         <b>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->format('d, Y') }}</b> <span class="{{ $type === 'binata' ? 'type-active' : '' }}">binata</span>/ <span class="{{ $type === 'dalaga' ? 'type-active' : '' }}">dalaga</span> / <span class="{{ $type === 'may asawa' ? 'type-active' : '' }}">may asawa</span> / <span class="{{ $type === '' ? 'type-active' : '' }}">balo</span> at ipinanganak sa
                         <b>{{ $resident->details->born_at }}</b> nakalagda sa ibaba ay
-                        naninirahan sa Purok 5 Sampaguita Street, Barangay Lingga,
-                        Calamba City, Laguna sapul pa noong <strong style="text-decoration: underline;">{{ \Carbon\Carbon::parse($resident->details->stayed_at)->format('Y') }}</strong> at walang kasong
+                        naninirahan sa {{ $resident->details->address }} sapul pa noong <strong style="text-decoration: underline;">{{ \Carbon\Carbon::parse($resident->details->stayed_at)->format('Y') }}</strong> at walang kasong
                         nabinbin dito.
                     </p>
         

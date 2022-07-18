@@ -33,7 +33,7 @@
         <h2 style="text-align: center; margin-bottom: 20px;">CERTIFICATE OF INDIGENCY</h5>
         <p>
             <p style="margin-left: 5rem;">
-                This is to certify that <i>{{ $resident->name }}</i>, <strong>28</strong> years old, a bonafide
+                This is to certify that <i>{{ $resident->name }}</i>, <strong>{{ \Carbon\Carbon::parse($resident->details->birthed_at)->age }}</strong> years old, a bonafide
                 resident of {{ $resident->details->address }} belongs to one of the many indigent families of Barangay Lingga, City of Calamba.
                 The income of his/her family is barely enough to meet their day to day needs.
             </p>
