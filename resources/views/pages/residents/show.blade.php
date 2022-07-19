@@ -101,26 +101,62 @@
                         </div>
                     </div>
                     <p>
-                        <form action="{{ route('export.barangay-clearance', $resident->id) }}">
-                            <button 
-                                type="submit"
-                                class="btn btn-light text-dark btn-block"
-                                {{ $resident->activeComplaint() ? 'disabled' : '' }}
-                            >
+                        <p>
+                            <button class="btn btn-light btn-block" type="button" data-toggle="collapse" data-target="#brgyClearance" aria-expanded="false" aria-controls="collapseExample">
                                 Generate Barangay Clearance
                             </button>
-                        </form>
+                        </p>
+                        <div class="collapse" id="brgyClearance">
+                            <form action="{{ route('export.barangay-clearance', $resident->id) }}">
+                                <input type="hidden" name="is_paid" value="true">
+                                <button 
+                                    type="submit"
+                                    class="btn btn-dark text-light btn-block mb-1"
+                                    {{ $resident->activeComplaint() ? 'disabled' : '' }}
+                                >
+                                    Paid
+                                </button>
+                            </form>
+                            <form action="{{ route('export.barangay-clearance', $resident->id) }}">
+                                <input type="hidden" name="is_paid" value="false">
+                                <button 
+                                    type="submit"
+                                    class="btn btn-dark text-light btn-block"
+                                    {{ $resident->activeComplaint() ? 'disabled' : '' }}
+                                >
+                                    Not Paid
+                                </button>
+                            </form>
+                        </div>
                     </p>
                     <p>
-                        <form action="{{ route('export.barangay-certification', $resident->id) }}">
-                            <button 
-                                type="submit"
-                                class="btn btn-light text-dark btn-block"
-                                {{ $resident->activeComplaint() ? 'disabled' : '' }}
-                            >
+                        <p>
+                            <button class="btn btn-light btn-block" type="button" data-toggle="collapse" data-target="#brgyCert" aria-expanded="false" aria-controls="collapseExample">
                                 Generate Barangay Certification
                             </button>
-                        </form>
+                        </p>
+                        <div class="collapse" id="brgyCert">
+                            <form action="{{ route('export.barangay-certification', $resident->id) }}">
+                                <input type="hidden" name="is_paid" value="true">
+                                <button 
+                                    type="submit"
+                                    class="btn btn-dark text-light btn-block mb-2"
+                                    {{ $resident->activeComplaint() ? 'disabled' : '' }}
+                                >
+                                    Paid
+                                </button>
+                            </form>
+                            <form action="{{ route('export.barangay-certification', $resident->id) }}">
+                                <input type="hidden" name="is_paid" value="false">
+                                <button 
+                                    type="submit"
+                                    class="btn btn-dark text-light btn-block"
+                                    {{ $resident->activeComplaint() ? 'disabled' : '' }}
+                                >
+                                    Not Paid
+                                </button>
+                            </form>
+                        </div>
                     </p>
                     <p>
                         <form action="{{ route('export.cert.of.indegency', $resident->id) }}">

@@ -8,10 +8,11 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\PDF;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ExportsController extends Controller
 {
-    public function barangayClearance(User $resident)
+    public function barangayClearance(Request $request, User $resident)
     {
         $resident = User::with('details')->find($resident->id);
         $age = Carbon::parse($resident->details->birthed_at)->age;
@@ -30,9 +31,10 @@ class ExportsController extends Controller
             'type' => $type,
         ]);
 
-        $filename = 'barangay-clearance.pdf';
+        $filename =  $resident->name . '.pdf';
 
         $isSenior = $age >= 60;
+        $pay = $isSenior || !$request->boolean('is_paid') ? 0 : 30.00;
 
         $resident
             ->documents()
@@ -40,13 +42,13 @@ class ExportsController extends Controller
                 'type' => 'Barangay Clearance',
                 'name' => $filename,
                 'is_senior' => $isSenior,
-                'cost' => $isSenior ? 0 : 30.00,
+                'cost' => $pay,
             ]);
 
         return $pdf->stream($filename);
     }
 
-    public function barangayCertification(User $resident)
+    public function barangayCertification(Request $request, User $resident)
     {
         $resident = User::with('details')->find($resident->id);
 
@@ -57,12 +59,13 @@ class ExportsController extends Controller
         $filename = "{$resident->name}.pdf";
 
         $isSenior = Carbon::parse($resident->details->birthed_at)->age >= 60;
+        $pay = $isSenior || !$request->boolean('is_paid') ? 0 : 30.00;
 
         $resident->documents()->create([
             'type' => 'Barangay Certification',
             'name' => $filename,
             'is_senior' => $isSenior,
-            'cost' => $isSenior ? 0 : 30.00,
+            'cost' => $pay,
         ]);
 
         return $pdf->stream($filename);
@@ -88,7 +91,7 @@ class ExportsController extends Controller
         return $pdf->stream($filename);
     }
 
-    public function certificateOfRegistration(User $resident)
+    public function certificateOfRegistration(Request $request, User $resident)
     {
         $resident = User::with('details')->find($resident->id);
 
@@ -98,18 +101,20 @@ class ExportsController extends Controller
 
         $filename = "{$resident->name}.pdf";
         $isSenior = Carbon::parse($resident->details->birthed_at)->age >= 60;
+        
+        $pay = $isSenior || !$request->boolean('is_paid') ? 0 : 30.00;
 
         $resident->documents()->create([
             'type' => 'Certificate of Registration',
             'name' => $filename,
             'is_senior' => $isSenior,
-            'cost' => $isSenior ? 0 : 30.00,
+            'cost' => $pay,
         ]);
 
         return $pdf->stream($filename);
     }
 
-    public function id(User $resident)
+    public function id(Request $request, User $resident)
     {
         $resident = User::with('details')->find($resident->id);
 
@@ -119,12 +124,13 @@ class ExportsController extends Controller
 
         $filename = "{$resident->name}.pdf";
         $isSenior = Carbon::parse($resident->details->birthed_at)->age >= 60;
+        $pay = $isSenior || !$request->boolean('is_paid') ? 0 : 30.00;
 
         $resident->documents()->create([
             'type' => 'Barangay ID',
             'name' => $filename,
             'is_senior' => $isSenior,
-            'cost' => $isSenior ? 0 : 30.00,
+            'cost' => $pay,
         ]);
 
         return $pdf->stream($filename);
