@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DocumentController extends Controller
 {
@@ -22,6 +23,21 @@ class DocumentController extends Controller
         return view('pages.documents.index', [  
             'documents' => $docs,
             'docType' => $request->query('document_type', ''),
+        ]);
+    }
+
+    public function monthlyRevenues()
+    {
+        DB::statement("SET SQL_MODE = ''");
+
+        $docs = Document::query()
+            ->selectRaw('CONCAT(MONTHNAME(created_at), " ", YEAR(created_at)) as date_,SUM(cost) as revenue')
+            ->groupByRaw('CONCAT(MONTH(created_at), YEAR(created_at))')
+            ->orderByDesc('date_')
+            ->get();
+
+        return view('pages.documents.monthly-revenues', [  
+            'documents' => $docs,
         ]);
     }
 }

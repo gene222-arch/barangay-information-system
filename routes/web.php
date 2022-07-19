@@ -41,7 +41,13 @@ Route::group([
 
     Route::middleware('role:Administrator|Supervisor')->group(function () 
     {
-        Route::get('/documents',[DocumentController::class, 'index'])->name('documents.index');
+        Route::group([
+            'prefix' => 'documents',
+            'as' => 'documents'
+        ], function () {
+            Route::get('/', [DocumentController::class, 'index'])->name('index');
+            Route::get('/monthly-revenues', [DocumentController::class, 'monthlyRevenues'])->name('index');
+        });
 
         Route::resource('notes', NotesController::class);
         Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])
