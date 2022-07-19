@@ -43,10 +43,10 @@ Route::group([
     {
         Route::group([
             'prefix' => 'documents',
-            'as' => 'documents'
+            'as' => 'documents.'
         ], function () {
             Route::get('/', [DocumentController::class, 'index'])->name('index');
-            Route::get('/monthly-revenues', [DocumentController::class, 'monthlyRevenues'])->name('index');
+            Route::get('/monthly-revenues', [DocumentController::class, 'monthlyRevenues'])->name('monthly-revenues');
         });
 
         Route::resource('notes', NotesController::class);
