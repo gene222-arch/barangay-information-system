@@ -29,6 +29,7 @@
                 <th scope="col">Resident</th>
                 <th scope="col">Type</th>
                 <th scope="col">Name</th>
+                <th scope="col">Status</th>
                 <th scope="col">Requested at</th>
             </tr>
         </thead>
@@ -42,6 +43,15 @@
                         {{ $document->type }}
                     </td>
                     <td>{{ $document->name }}</td>
+                    <td>
+                        <span class="badge badge-pill badge-{{ !((int) $document->cost) ? 'danger' : 'success' }}">
+                            @if($document)
+                                {{ Str::lower(!((int) $document->cost) ? 'Not Paid' : 'Paid') }}
+                            @else
+                                clear
+                            @endif 
+                        </span>
+                    </td>
                     <td>{{ \Carbon\Carbon::parse($document->created_at)->format('M d, Y') }}</td>
                 </tr>
             @endforeach
