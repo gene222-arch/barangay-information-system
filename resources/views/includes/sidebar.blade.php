@@ -34,9 +34,6 @@
 		<li class="{{ request()->is('reservations') || request()->is('reservations/*') ? 'active' : '' }}">
 			<a href="/reservations"><i class="fas fa-basketball mr-3 {{ request()->is('reservations') || request()->is('reservations/*') ? 'text-info' : '' }}"></i>Court Reservations</a>
 		</li>
-		<li class="{{ request()->is('assistance-requests') || request()->is('assistance-requests/*') ? 'active' : '' }}">
-			<a href="/assistance-requests"><i class="fas fa-handshake-angle mr-3 {{ request()->is('assistance-requests') || request()->is('assistance-requests/*') ? 'text-info' : '' }}"></i>Assistance Requests</a>
-		</li>
 		<li class="{{ request()->is('city-directory') || request()->is('city-directory') ? 'active' : '' }}">
 			<a href="/city-directory"><i class="fa-solid fa-city mr-3 {{ request()->is('city-directory') || request()->is('city-directory/*') ? 'text-info' : '' }}"></i> City Directory</a>
 		</li>

@@ -85,6 +85,11 @@
             text-decoration: underline; 
             font-weight: bold;
         }
+
+        img {
+            border-radius: 0.5rem;
+            border: 3px solid lightblue;
+        }
     </style>
 </head>
 <body>

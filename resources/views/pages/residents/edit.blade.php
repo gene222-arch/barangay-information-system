@@ -113,8 +113,9 @@
                                         id="stayed_at" 
                                         type="date" 
                                         class="form-control @error('stayed_at') is-invalid @enderror bg-light" name="stayed_at" 
-                                        value="{{ \Carbon\Carbon::parse($resident->stayed_at)->format('Y-d-m') }}"  
-                                        autocomplete="stayed_at" autofocus
+                                        value="{{ \Carbon\Carbon::parse($resident->details->stayed_at)->format('Y-m-d') }}"  
+                                        autocomplete="stayed_at" 
+                                        autofocus
                                     >
                             
                                     @error('stayed_at')
@@ -143,7 +144,12 @@
                                 <label for="born_at" class="col-md-4 col-form-label text-md-end">{{ __('Born in') }}</label>
                             
                                 <div class="col-md-6">
-                                    <input id="born_at" type="text" class="form-control @error('born_at') is-invalid @enderror bg-light" name="born_at" value="{{ $resident->born_at }}"  autocomplete="name" autofocus>
+                                    <input 
+                                        id="born_at" 
+                                        type="text" 
+                                        class="form-control @error('born_at') is-invalid @enderror bg-light" 
+                                        name="born_at" 
+                                        value="{{ $resident->details->born_at }}"  autocomplete="name" autofocus>
                             
                                     @error('born_at')
                                         <span class="invalid-feedback" role="alert">
