@@ -11,9 +11,6 @@
 			<a href="/"><span class="fa fa-home mr-3 {{ request()->is('/') ? 'text-info' : '' }}"></span> Dashboard</a>
 		</li>
 		@hasrole('Administrator|Supervisor')
-			<li class="{{ request()->is('documents/monthly-revenues') ? 'active' : '' }}">
-				<a href="/documents/monthly-revenues"><span class="fa fa-money-bill-1-wave mr-3 {{ request()->is('documents/monthly-revenues') ? 'text-info' : '' }}"></span> Monthly Revenues</a>
-			</li>
 			<li class="{{ request()->is('residents') || request()->is('residents/*') ? 'active' : '' }}">
 				<a href="/residents"><i class="fas fa-user mr-3 {{ request()->is('residents') || request()->is('residents/*') ? 'text-info' : '' }}"></i> Residents</a>
 			</li>
@@ -22,6 +19,9 @@
 			</li>
 			<li class="{{ request()->is('documents') || request()->is('/documents') ? 'active' : '' }}">
 				<a href="/documents"><i class="fas fa-file-arrow-down mr-3 {{ request()->is('/documents') || request()->is('documents') ? 'text-info' : '' }}"></i>Documents</a>
+			</li>
+			<li class="{{ request()->is('documents/monthly-revenues') ? 'active' : '' }}">
+				<a href="/documents/monthly-revenues"><span class="fa fa-money-bill-1-wave mr-3 {{ request()->is('documents/monthly-revenues') ? 'text-info' : '' }}"></span> Monthly Revenues</a>
 			</li>
 		@endhasrole
 		@hasrole('Administrator|Supervisor')
