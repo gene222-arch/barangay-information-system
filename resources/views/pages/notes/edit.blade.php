@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <h2 class="jumbotron display-6">Edit Notes</h2>
     <form action="{{ route('notes.update', $note->id) }}" method="POST">
         @csrf
         @method('PUT')

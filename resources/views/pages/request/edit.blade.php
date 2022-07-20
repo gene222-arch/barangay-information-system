@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-        <h2 class="jumbotron display-6">Edit Assistance Request</h2>
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="card">
