@@ -41,7 +41,7 @@
 	</style>
 </head>
 <body>
-	<h2 class="header">Court Reservations</h2>
+	<h2 class="header">Barangay Schedules</h2>
 	<table>
 		<thead>
 			<tr>
