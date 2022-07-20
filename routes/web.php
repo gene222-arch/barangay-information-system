@@ -47,6 +47,7 @@ Route::group([
         ], function () {
             Route::get('/', [DocumentController::class, 'index'])->name('index');
             Route::get('/monthly-revenues', [DocumentController::class, 'monthlyRevenues'])->name('monthly-revenues');
+            Route::put('/pay/{document}', [DocumentController::class, 'pay'])->name('pay');
         });
 
         Route::resource('notes', NotesController::class);

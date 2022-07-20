@@ -26,6 +26,17 @@ class DocumentController extends Controller
         ]);
     }
 
+    public function pay(Document $document)
+    {
+        $document->update([
+            'cost' => 30.00,
+        ]);
+
+        return redirect()->route('documents.index')->with([
+            'successMessage' => 'Paid successfully'
+        ]);
+    }
+
     public function monthlyRevenues()
     {
         DB::statement("SET SQL_MODE = ''");
