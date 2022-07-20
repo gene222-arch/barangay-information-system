@@ -36,7 +36,6 @@ Route::group([
 {
     Route::get('/', [HomeController::class, 'index']);
     Route::resource('assistance-requests', AssistanceRequestController::class);
-    Route::resource('reservations', ReservationController::class);
     Route::get('/city-directory', fn () => view('pages.city-directory'));
 
     Route::middleware('role:Administrator|Supervisor')->group(function () 

@@ -34,9 +34,6 @@
 				<a href="/schedules"><i class="fas fa-calendar mr-3 {{ request()->is('schedules') || request()->is('schedules/*') ? 'text-info' : '' }}"></i> Schedules</a>
 			</li>
 		@endhasrole
-		<li class="{{ request()->is('reservations') || request()->is('reservations/*') ? 'active' : '' }}">
-			<a href="/reservations"><i class="fas fa-basketball mr-3 {{ request()->is('reservations') || request()->is('reservations/*') ? 'text-info' : '' }}"></i>Court Reservations</a>
-		</li>
 		<li class="{{ request()->is('city-directory') || request()->is('city-directory') ? 'active' : '' }}">
 			<a href="/city-directory"><i class="fa-solid fa-city mr-3 {{ request()->is('city-directory') || request()->is('city-directory/*') ? 'text-info' : '' }}"></i> City Directory</a>
 		</li>
