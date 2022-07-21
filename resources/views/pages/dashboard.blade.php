@@ -7,32 +7,34 @@
             <div class="card text-center">
                 <div class="card-header bg-dark">
                 </div>
+                @hasanyrole('Super Administrator|Supervisor')
                 <div class="card-body">
-                  <h5 class="card-title">Enter barcode here</h5>
-                    <form method="POST" action="{{ route('residents.barcode') }}">
-                        @csrf
-                        <div class="input-group input-group-sm mb-3 px-5">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa-solid fa-barcode"></i></span>
-                            </div>
-                            <input 
-                                name="barcode" 
-                                type="password" 
-                                class="form-control @error('barcode') is-invalid @enderror bg-light" 
-                                aria-label="Small" 
-                                aria-describedby="inputGroup-sizing-sm"
-                                autofocus
-                            >
-                            @error('barcode')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <p class="card-text">Please do enter a valid barcode</p>
-                        <button type="submit" class="btn btn-primary">Scan</button>
-                    </form>
-                </div>
+                    <h5 class="card-title">Enter barcode here</h5>
+                      <form method="POST" action="{{ route('residents.barcode') }}">
+                          @csrf
+                          <div class="input-group input-group-sm mb-3 px-5">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa-solid fa-barcode"></i></span>
+                              </div>
+                              <input 
+                                  name="barcode" 
+                                  type="password" 
+                                  class="form-control @error('barcode') is-invalid @enderror bg-light" 
+                                  aria-label="Small" 
+                                  aria-describedby="inputGroup-sizing-sm"
+                                  autofocus
+                              >
+                              @error('barcode')
+                                  <div class="invalid-feedback">
+                                      {{ $message }}
+                                  </div>
+                              @enderror
+                          </div>
+                          <p class="card-text">Please do enter a valid barcode</p>
+                          <button type="submit" class="btn btn-primary">Scan</button>
+                      </form>
+                  </div>
+                @endhasanyrole
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
