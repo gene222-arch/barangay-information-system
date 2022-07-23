@@ -6,6 +6,7 @@ use App\Http\Requests\Schedule\StoreRequest;
 use App\Http\Requests\Schedule\UpdateRequest;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SchedulesController extends Controller
 {
@@ -104,6 +105,10 @@ class SchedulesController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
+        if (in_array(Auth::user()->roles->first()->name, ['Resident', 'Non Resident'])) {
+            abort(403, 'User does not have the right roles');
+        }
+
         if (request()->ajax()) 
         {
             $schedule->delete();

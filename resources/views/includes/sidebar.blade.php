@@ -20,20 +20,18 @@
 			<li class="{{ request()->is('documents') || request()->is('/documents') ? 'active' : '' }}">
 				<a href="/documents"><i class="fas fa-file-arrow-down mr-3 {{ request()->is('/documents') || request()->is('documents') ? 'text-info' : '' }}"></i>Documents</a>
 			</li>
+		@endhasrole
+		@hasrole('Administrator')
 			<li class="{{ request()->is('documents/monthly-revenues') ? 'active' : '' }}">
 				<a href="/documents/monthly-revenues"><span class="fa fa-money-bill-1-wave mr-3 {{ request()->is('documents/monthly-revenues') ? 'text-info' : '' }}"></span> Monthly Revenues</a>
 			</li>
 		@endhasrole
-		@hasrole('Administrator|Supervisor')
-			<li class="{{ request()->is('notes') || request()->is('notes/*') ? 'active' : '' }}">
-				<a href="/notes"><i class="fa-solid fa-note-sticky mr-3 {{ request()->is('notes') || request()->is('notes/*') ? 'text-info' : '' }}"></i> Notes</a>
-			</li>
-		@endhasrole
-		@hasrole('Administrator|Supervisor')
-			<li class="{{ request()->is('schedules') || request()->is('schedules/*') ? 'active' : '' }}">
-				<a href="/schedules"><i class="fas fa-calendar mr-3 {{ request()->is('schedules') || request()->is('schedules/*') ? 'text-info' : '' }}"></i> Schedules</a>
-			</li>
-		@endhasrole
+		<li class="{{ request()->is('notes') || request()->is('notes/*') ? 'active' : '' }}">
+			<a href="/notes"><i class="fa-solid fa-note-sticky mr-3 {{ request()->is('notes') || request()->is('notes/*') ? 'text-info' : '' }}"></i> Notes</a>
+		</li>
+		<li class="{{ request()->is('schedules') || request()->is('schedules/*') ? 'active' : '' }}">
+			<a href="/schedules"><i class="fas fa-calendar mr-3 {{ request()->is('schedules') || request()->is('schedules/*') ? 'text-info' : '' }}"></i> Schedules</a>
+		</li>
 		<li class="{{ request()->is('city-directory') || request()->is('city-directory') ? 'active' : '' }}">
 			<a href="/city-directory"><i class="fa-solid fa-city mr-3 {{ request()->is('city-directory') || request()->is('city-directory/*') ? 'text-info' : '' }}"></i> City Directory</a>
 		</li>

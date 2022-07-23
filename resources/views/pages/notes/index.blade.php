@@ -49,7 +49,7 @@
                         <a title='Edit' href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        @hasrole('Super Administrator')
+                        @hasrole('Administrator')
                             <button title="Delete note" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $note->id }}">
                                 <i class="fa-solid fa-trash"></i>
                             </button>

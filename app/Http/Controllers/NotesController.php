@@ -99,6 +99,8 @@ class NotesController extends Controller
      */
     public function destroy(Note $note)
     {
+        $this->middleware('role:Administrator');
+
         $note->delete();
 
         return Redirect::route('notes.index')

@@ -62,7 +62,7 @@ class ExportsController extends Controller
         $pay = $isSenior || !$request->boolean('is_paid') ? 0 : 30.00;
 
         $resident->documents()->create([
-            'type' => 'Barangay Certification',
+            'type' => 'Certificate of Residency',
             'name' => $filename,
             'is_senior' => $isSenior,
             'cost' => $pay,

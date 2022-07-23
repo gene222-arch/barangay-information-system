@@ -132,7 +132,7 @@
                     <p>
                         <p>
                             <button class="btn btn-light btn-block" type="button" data-toggle="collapse" data-target="#brgyCert" aria-expanded="false" aria-controls="collapseExample">
-                                Generate Barangay Certification
+                                Generate Certificate of Residency
                             </button>
                         </p>
                         <div class="collapse" id="brgyCert">

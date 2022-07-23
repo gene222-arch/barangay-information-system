@@ -50,7 +50,8 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready( function () {
+        $(document).ready( function () 
+        {
             $('.table').DataTable({
                 lengthMenu: [
                     [5, 10, 15, -1],

@@ -37,6 +37,8 @@ Route::group([
     Route::get('/', [HomeController::class, 'index']);
     Route::resource('assistance-requests', AssistanceRequestController::class);
     Route::get('/city-directory', fn () => view('pages.city-directory'));
+    Route::resource('schedules', SchedulesController::class);
+    Route::resource('notes', NotesController::class);
 
     Route::middleware('role:Administrator|Supervisor')->group(function () 
     {
@@ -45,11 +47,12 @@ Route::group([
             'as' => 'documents.'
         ], function () {
             Route::get('/', [DocumentController::class, 'index'])->name('index');
-            Route::get('/monthly-revenues', [DocumentController::class, 'monthlyRevenues'])->name('monthly-revenues');
+            Route::get('/monthly-revenues', [DocumentController::class, 'monthlyRevenues'])
+                ->name('monthly-revenues')
+                ->middleware('role:Administrator');
             Route::put('/pay/{document}', [DocumentController::class, 'pay'])->name('pay');
         });
 
-        Route::resource('notes', NotesController::class);
         Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])
             ->name('residents.none');
         Route::get('/non-residents/create', [ResidentsController::class, 'create'])
@@ -59,8 +62,7 @@ Route::group([
         Route::resource('residents', ResidentsController::class);
         Route::post('/residents/view-by-barcode', [ResidentsController::class, 'showViaBarcode'])
             ->name('residents.barcode');
-    
-        Route::resource('schedules', SchedulesController::class);
+        
         Route::resource('user-complaints', UserComplaintsController::class);
         Route::put('/user-complaints/{complaint}/clear', [UserComplaintsController::class, 'clear'])->name('user-complaints.clear');
     

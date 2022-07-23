@@ -36,7 +36,7 @@ class DashboardAction
         ])->count();
 
         return [
-            'brgyCert' => $docs["Barangay Certification"],
+            'brgyCert' => $docs["Certificate of Residency"],
             'brgyClearance' => $docs["Barangay Clearance"],
             'brgyId' => $docs["Barangay ID"],
             'certOfIndigency' => $docs["Certificate of Indigency"],

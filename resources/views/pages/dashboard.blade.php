@@ -7,7 +7,7 @@
             <div class="card text-center">
                 <div class="card-header bg-dark">
                 </div>
-                @hasanyrole('Super Administrator|Supervisor')
+                @hasanyrole('Administrator|Supervisor')
                 <div class="card-body">
                     <h5 class="card-title">Enter barcode here</h5>
                       <form method="POST" action="{{ route('residents.barcode') }}">
@@ -120,7 +120,7 @@
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                         <div class="card-body text-info">
                             <h5 class="card-title"><h3><strong>{{ $brgyCert }}</strong></h3></h5>
-                            <p class="card-text text-secondary">Barangay Certification</p>
+                            <p class="card-text text-secondary">Certificate of Residency</p>
                         </div>
                     </div>
                     <div class="col-4 col-sm-4 col-md-4 col-lg-4">

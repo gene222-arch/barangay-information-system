@@ -73,7 +73,7 @@
                                 >
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
-                                @hasrole('Super Administrator')
+                                @hasrole('Administrator')
                                     <button 
                                         title="Delete" 
                                         type="button" 
