@@ -202,9 +202,16 @@ class ResidentsController extends Controller
         $name = $resident->name;
         $resident->delete();
 
-        return Redirect::route('residents.index')
+        if ($resident->hasRole('Resident')) {
+            return Redirect::route('residents.index')
             ->with([
                 'successMessage' => "Resident named $name removed successfully."
+            ]);
+        }
+
+        return Redirect::route('residents.none')
+            ->with([
+                'successMessage' => "Non Resident named $name removed successfully."
             ]);
     }
 }
