@@ -21,14 +21,24 @@
     <div class="table-responsive">
         <div class="text-right">
             <a 
-                href="{{ request()->is('residents') ? route('residents.create') : route('residents.none.create') }}"
-                class="btn btn-success mb-2 px-2"
+                href="{{ route('residents.create') }}"
+                class="btn btn-outline-dark mb-2 px-2"
                 data-toggle="tooltip" 
                 data-placement="left" 
                 title="Add new resident"
                 data-html="true"
             >
-                <i class="fas fa-user-plus"></i>
+                <i class="fas fa-user-check"></i>
+            </a>
+            <a 
+                href="{{ route('residents.none.create') }}"
+                class="btn btn-outline-dark mb-2 px-2"
+                data-toggle="tooltip" 
+                data-placement="left" 
+                title="Add new non resident"
+                data-html="true"
+            >
+                <i class="fas fa-user"></i>
             </a>
         </div>
         <table class="table table-hover">
@@ -38,6 +48,7 @@
                     <th scope="col">Phone Number</th>
                     <th scope="col">Address</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Role</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -59,6 +70,9 @@
                                     clear
                                 @endif 
                             </span>
+                        </td>
+                        <td>
+                            {{ $resident->roles->first()->name }}
                         </td>
                         <td class="w-45">
                             <div class="actions-container">

@@ -53,8 +53,6 @@ Route::group([
             Route::put('/pay/{document}', [DocumentController::class, 'pay'])->name('pay');
         });
 
-        Route::get('/non-residents', [ResidentsController::class, 'nonResidents'])
-            ->name('residents.none');
         Route::get('/non-residents/create', [ResidentsController::class, 'create'])
             ->name('residents.none.create');
         Route::get('/non-residents/{resident}', [ResidentsController::class, 'edit'])

@@ -114,81 +114,93 @@
         </div>
         <div class="divider mt-4"></div>
         <h3><strong>Documents</strong></h3>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-info mb-3">
-                <div class="row align-items-center">
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="card-body text-info">
-                            <h5 class="card-title"><h3><strong>{{ $brgyCert }}</strong></h3></h5>
-                            <p class="card-text text-secondary">Certificate of Residency</p>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-info mb-3">
-                <div class="row align-items-center">
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="card-body text-info">
-                            <h5 class="card-title"><h3><strong>{{ $brgyClearance }}</strong></h3></h5>
-                            <p class="card-text text-secondary">Barangay Clearance</p>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-info mb-3">
-                <div class="row align-items-center">
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="card-body text-info">
-                            <h5 class="card-title"><h3><strong>{{ $brgyId }}</strong></h3></h5>
-                            <p class="card-text text-secondary">Barangay ID</p>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-info mb-3">
-                <div class="row align-items-center">
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="card-body text-info">
-                            <h5 class="card-title"><h3><strong>{{ $certOfIndigency }}</strong></h3></h5>
-                            <p class="card-text text-secondary">Certificate of Indigency</p>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-info mb-3">
-                <div class="row align-items-center">
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="card-body text-info">
-                            <h5 class="card-title"><h3><strong>{{ $certOfReg }}</strong></h3></h5>
-                            <p class="card-text text-secondary">Certificate of Registration</p>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                        <i class="fa-solid fa-file-circle-plus text-info fa-3x"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="container"></div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script>
+        const monthlyRevenue = {!! json_encode($monthlyRevenue) !!};
+        
+        console.log(monthlyRevenue);
+
+        Highcharts.chart('container', 
+        {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Individual Document Revenue'
+            },
+            subtitle: {
+                text: 'A more detailed revenue of every document'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Revenue (PHP)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>₱{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: 
+            [
+                {
+                    name: 'Certificate of Residency',
+                    data: monthlyRevenue.certificate_of_residency.map(val => parseFloat(val)),
+                }, 
+                {
+                    name: 'Barangay ID',
+                    data: monthlyRevenue.barangay_i_d.map(val => parseFloat(val)),
+                }, 
+                {
+                    name: 'Barangay Clearance',
+                    data: monthlyRevenue.barangay_clearance.map(val => parseFloat(val)),
+                }, 
+                {
+                    name: 'Certificate of Registration',
+                    data: monthlyRevenue.certificate_of_registration.map(val => parseFloat(val)),
+                },
+                {
+                    name: 'Certificate of Indigency',
+                    data: monthlyRevenue.certificate_of_indigency.map(val => parseFloat(val)),
+                },
+            ]
+        });
+             
+    </script>
 @endsection

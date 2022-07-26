@@ -20,20 +20,7 @@ class ResidentsController extends Controller
      */
     public function index()
     {
-        $residents = User::role('Resident')
-            ->with(['details', 'complaints'])
-            ->where('id', '!=', 1)
-            ->latest()
-            ->get();
-        
-        return view('pages.residents.index', [
-            'residents' => $residents
-        ]);
-    }
-
-    public function nonResidents()
-    {
-        $residents = User::role('Non Resident')
+        $residents = User::role(['Resident', 'Non Resident'])
             ->with(['details', 'complaints'])
             ->where('id', '!=', 1)
             ->latest()
@@ -92,10 +79,8 @@ class ResidentsController extends Controller
             $request->phone_number,
         );
 
-
-        $route = $request->user_type !== 'Non Resident' ? 'residents.index' : 'residents.none';
-
-        return Redirect::route($route)
+        return redirect()
+            ->back()
             ->with([
                 'successMessage' => 'Created successfully'
             ]);
@@ -183,9 +168,8 @@ class ResidentsController extends Controller
             $request->phone_number,
         );
 
-        $route = $request->user_type !== 'Non Resident' ? 'residents.index' : 'residents.none';
-
-        return Redirect::route($route)
+        return redirect()
+            ->route('residents.index')
             ->with([
                 'successMessage' => 'Updated successfully'
             ]);
@@ -202,14 +186,8 @@ class ResidentsController extends Controller
         $name = $resident->name;
         $resident->delete();
 
-        if ($resident->hasRole('Resident')) {
-            return Redirect::route('residents.index')
-            ->with([
-                'successMessage' => "Resident named $name removed successfully."
-            ]);
-        }
-
-        return Redirect::route('residents.none')
+        return redirect()
+            ->back()
             ->with([
                 'successMessage' => "Non Resident named $name removed successfully."
             ]);

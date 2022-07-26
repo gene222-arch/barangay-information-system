@@ -27,7 +27,7 @@
                                         id="preview-image-before-upload" 
                                         src="{{ asset('avatar.png') }}"
                                         alt="preview image" 
-                                        style="max-height: 250px;"
+                                        style="max-height: 100px;"
                                     >
                                     @error('image')
                                         <p class="text-danger" role="alert">

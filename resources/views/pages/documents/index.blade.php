@@ -12,24 +12,13 @@
     <h3>
         <strong class="headerTitle">Documents</strong>
     </h3>
-    <div class="text-right mb-4">
-        <form action="{{ route('documents.index') }}" method="get">
-            @csrf
-            <select name="document_type" class="doctype" onchange="this.form.submit()">
-                <option value="">Filter Type</option>
-                @foreach (['Barangay Clearance', 'Barangay ID', 'Certificate of Indigency', 'Barangay Certification'] as $documentType)
-                    <option {{ $documentType === $docType ? 'selected' : '' }} value="{{ $documentType }}">{{ $documentType }}</option>
-                @endforeach
-            </select>
-        </form>
-    </div>
     <table class="table" id="documentsTable">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Resident</th>
                 <th scope="col">Type</th>
                 <th scope="col">Name</th>
-                <th scope="col">Status</th>
+                <th scope="col">Payment Status</th>
                 <th scope="col">Requested at</th>
                 <th scope="col">Action</th>
             </tr>

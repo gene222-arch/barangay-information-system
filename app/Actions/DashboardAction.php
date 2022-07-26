@@ -2,9 +2,10 @@
 
 namespace App\Actions;
 
+use App\Models\User;
 use App\Models\Document;
 use App\Models\Schedule;
-use App\Models\User;
+use Illuminate\Support\Str;
 use App\Models\UserComplaint;
 
 class DashboardAction 
@@ -13,10 +14,21 @@ class DashboardAction
     {
         $documentsRevenue = Document::sum('cost');
 
-        $docs = Document::selectRaw('type, COUNT(*) as count')
-            ->groupBy('type')
-            ->get()
-            ->mapWithKeys(fn ($doc) => [$doc['type'] => $doc['count']]);
+        $data = [];
+        $monthly = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        $docs = Document::selectRaw(
+            'type,
+            MONTH(created_at) - 1 as month,
+            SUM(cost) as revenue'
+        )
+            ->groupBy('month', 'type')
+            ->get();
+
+        foreach ($docs as $doc) {
+            $monthly[$doc->month] = $doc->revenue;
+            $data[Str::snake($doc->type)] = $monthly;
+        }
         
         $users = User::query()
             ->with('roles')
@@ -27,20 +39,14 @@ class DashboardAction
 
         $schedulesCount = Schedule::count();
         $blottersCount = UserComplaint::where([
-            [
-                'type', 'blotter'
-            ],
-            [
-                'is_solved', 'No'
-            ]
+            [ 'type', 'blotter' ],
+            [ 'is_solved', 'No' ],
         ])->count();
 
         return [
-            'brgyCert' => $docs["Certificate of Residency"],
-            'brgyClearance' => $docs["Barangay Clearance"],
-            'brgyId' => $docs["Barangay ID"],
-            'certOfIndigency' => $docs["Certificate of Indigency"],
-            'certOfReg' => $docs["Certificate of Registration"],
+            // 
+            'monthlyRevenue' => $data,
+            //
             'documentsRevenue' => $documentsRevenue,
             'nonResidentsCount' => $users['Non Resident'],
             'residentsCount' => $users['Resident'],
