@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'image' => ['required', 'image'],
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', ''],
             'birthed_at' => ['required', 'date', 'date_format:Y-m-d'],
             'stayed_at' => ['required', 'date', 'date_format:Y-m-d'],
             'email' => ['required', 'email', 'unique:users'],

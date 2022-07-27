@@ -37,22 +37,7 @@
                 @endhasanyrole
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-            <div class="card border-dark mb-3">
-                <div class="row align-items-center">
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="card-body text-success">
-                            <h5 class="card-title"><h3><strong>₱{{ $documentsRevenue }}</strong></h3></h5>
-                            <p class="card-text text-secondary">Documents Revenue</p>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                        <i class="fas fa-file-invoice-dollar fa-3x text-success"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
             <div class="card border-dark mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
@@ -67,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
             <div class="card border-dark mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
@@ -82,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
             <div class="card border-dark mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
@@ -97,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
             <div class="card border-dark mb-3">
                 <div class="row align-items-center">
                     <div class="col-8 col-sm-8 col-md-8 col-lg-8">
