@@ -1,5 +1,16 @@
 @extends('layouts.dashboard')
 
+@section('css')
+
+    <style>
+        .fc-content {
+            color: white;
+            text-transform: uppercase;
+        }
+    </style>
+
+@endsection
+
 @section('content')
     <div class="text-right">
         <a 

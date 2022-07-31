@@ -35,10 +35,11 @@
         font-size: 0.5rem;
         font-weight: 400;
     }
-
-    .barcode {
+    
+    .barcode-img {
         position: absolute;
-        bottom: -10%;
+        bottom: -15%;
+        left: -9rem;
     }
 
     small {
@@ -100,7 +101,8 @@
                 <img 
                     src="data:image/png;base64,{{ DNS1D::getBarcodePNG($resident->details->barcode,'C128') }}" 
                     height="40" 
-                    width="70"
+                    width="80"
+                    class="barcode-img"
                 />
             </section>
         </div>
