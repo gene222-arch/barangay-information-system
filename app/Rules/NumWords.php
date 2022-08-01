@@ -28,7 +28,7 @@ class NumWords implements Rule
         $this->attribute = $attribute;
         $trimmed = trim($value);
         $numWords = count(explode(' ', $trimmed));
-        return $numWords === $this->expected;
+        return $numWords >= $this->expected;
     }
 
     /**
