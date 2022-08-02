@@ -12,13 +12,14 @@
 
     .position {
         margin-top: -1.5rem;
-        font-size: 0.8rem;
+        font-size: 0.875rem;
         color: lightblue;
     }
 
     .kagawad {
         text-transform: uppercase;
         font-weight: bold;
+        font-size: 0.875rem;
     }
 </style>
 

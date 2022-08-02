@@ -22,7 +22,7 @@
 
         .right {
             margin-left: -16rem;
-            margin-top: 15rem;
+            margin-top: 5rem;
         }
     </style>
 </head>

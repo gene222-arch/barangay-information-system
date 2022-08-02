@@ -8,10 +8,13 @@
         </div>
         <div class="col-12 col-sm-12 col-md-8 col-lg-6">
             <div class="card">
-                <img 
-                    class="card-img-top"
-                    height="400" 
-                    src="{{ asset('storage/' . $resident->details->avatar_path) }}" alt="Card image cap">
+                <div class="imgs text-center">
+                    <img
+                        height="193" 
+                        width="193"
+                        src="{{ asset('storage/' . $resident->details->avatar_path) }}" alt="Card image cap"
+                    >
+                </div>
                 <div class="card-header bg-transparent">
                     <div class="row justify-content-between">
                         <div class="col-10">

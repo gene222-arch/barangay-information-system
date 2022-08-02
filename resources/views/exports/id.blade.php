@@ -39,7 +39,7 @@
     .barcode-img {
         position: absolute;
         bottom: -15%;
-        left: -9rem;
+        left: 0rem;
     }
 
     small {
@@ -61,6 +61,11 @@
         width: 100%;
         font-size: 0.7rem;
         font-weight: bold;
+    }
+
+    .address {
+        width: 5rem;
+        font-size: 0.5rem;
     }
 </style>
 </head>
@@ -94,7 +99,7 @@
                 </p>
                 <p class="info">
                     <strong class="label">Address </strong> <br>
-                    <small>{{ $resident->details->address }}</small>
+                    <span class="address">{{ $resident->details->address }}</span>
                 </p>
             </section>
             <section class="barcode">
